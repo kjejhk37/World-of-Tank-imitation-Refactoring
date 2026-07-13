@@ -36,6 +36,9 @@ If the user's direction carries risks or trade-offs, state them clearly before p
 All implementation work requires user approval obtained through the Task Delegation workflow before proceeding.
 Do not take any action beyond the scope approved in the strategy document without explicit user consent.
 
+**Trigger rule:** any request phrased as an instruction to create/add/implement something (e.g. "~를 만들어줘", "~를 추가해줘", "~를 구현해줘") unconditionally starts the Task Delegation Workflow from Step 1 — no exception for requests that look small or simple.
+Do not skip Step 1, and do not substitute it with ad-hoc clarifying questions (e.g. a multiple-choice tool) — collect the Task Document fields as plain text per Step 1 first.
+
 If an unexpected situation arises during implementation — such as the need to add or remove functionality not covered in the strategy — stop immediately, notify the user, update the strategy .md to reflect the change, and resume only after re-approval.
 
 ---
