@@ -30,3 +30,17 @@ TEST(LaunchConfigParserTest, ThrowsOnUnknownRendererValue)
     char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=foo")};
     EXPECT_THROW(ParseLaunchConfig(2, argv), std::invalid_argument);
 }
+
+TEST(LaunchConfigParserTest, UsesProvidedDefaultBackendWhenFlagMissing)
+{
+    char* argv[] = {const_cast<char*>("main")};
+    const LaunchConfig config = ParseLaunchConfig(1, argv, RendererBackend::OpenGL);
+    EXPECT_EQ(config.backend, RendererBackend::OpenGL);
+}
+
+TEST(LaunchConfigParserTest, ArgvOverridesProvidedDefaultBackend)
+{
+    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx")};
+    const LaunchConfig config = ParseLaunchConfig(2, argv, RendererBackend::OpenGL);
+    EXPECT_EQ(config.backend, RendererBackend::DirectX);
+}

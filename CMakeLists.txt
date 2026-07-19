@@ -10,21 +10,40 @@ if(MSVC)
     add_compile_options(/utf-8)
 endif()
 
+include(FetchContent)
+
+# nlohmann::json은 JsonDataStore 구현(내부)에서만 쓰인다 — app_lib에 PRIVATE로 링크해
+# main/tests가 이 라이브러리의 존재를 include 경로 상으로도 알 수 없게 한다.
+# (docs/dependency/nlohmann_json_20260719.md 참고)
+FetchContent_Declare(
+    nlohmann_json
+    URL https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
+FetchContent_MakeAvailable(nlohmann_json)
+
 add_library(app_lib STATIC
     src/config/LaunchConfigParser.cpp
     src/config/LaunchConfigStore.cpp
+    src/config/ConfigManager.cpp
     src/renderer/RendererFactory.cpp
+    src/renderer/RendererBackendParser.cpp
     src/renderer/DirectXRenderer.cpp
     src/renderer/OpenGLRenderer.cpp
+    src/serialization/DataRecordAccess.cpp
+    src/serialization/JsonDataStore.cpp
+    src/serialization/SqliteDataStore.cpp
+    src/persistence/SaveLoadManager.cpp
+    src/persistence/PlayerProgress.cpp
 )
 target_include_directories(app_lib PUBLIC src)
+target_link_libraries(app_lib PRIVATE nlohmann_json::nlohmann_json)
 
-add_executable(main src/main.cpp)
+add_executable(main src/app/main.cpp)
 target_link_libraries(main PRIVATE app_lib)
 
 # GoogleTest는 tests 타겟에만 링크한다 — main/app_lib은 테스트 프레임워크에 의존하지 않는다.
 # (docs/dependency/googletest_20260715.md 참고)
-include(FetchContent)
 FetchContent_Declare(
     googletest
     URL https://github.com/google/googletest/archive/refs/tags/v1.17.0.zip
@@ -39,6 +58,13 @@ add_executable(tests
     tests/LaunchConfigParserTest.cpp
     tests/LaunchConfigStoreTest.cpp
     tests/RendererFactoryTest.cpp
+    tests/RendererBackendParserTest.cpp
+    tests/DataRecordAccessTest.cpp
+    tests/JsonDataStoreTest.cpp
+    tests/SqliteDataStoreTest.cpp
+    tests/ConfigManagerTest.cpp
+    tests/SaveLoadManagerTest.cpp
+    tests/PlayerProgressTest.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 

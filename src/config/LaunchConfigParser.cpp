@@ -4,34 +4,29 @@
 #include <string>
 #include <string_view>
 
+#include "renderer/RendererBackendParser.h"
+
 namespace
 {
     constexpr std::string_view kRendererFlagPrefix = "--renderer=";
-
-    RendererBackend ParseRendererBackend(std::string_view value)
-    {
-        if (value == "directx")
-        {
-            return RendererBackend::DirectX;
-        }
-        if (value == "opengl")
-        {
-            return RendererBackend::OpenGL;
-        }
-        throw std::invalid_argument("Unknown --renderer value: " + std::string(value));
-    }
 }
 
-LaunchConfig ParseLaunchConfig(int argc, char** argv)
+LaunchConfig ParseLaunchConfig(int argc, char** argv, RendererBackend defaultBackend)
 {
-    LaunchConfig config{RendererBackend::DirectX};
+    LaunchConfig config{defaultBackend};
 
     for (int i = 1; i < argc; ++i)
     {
         const std::string_view arg = argv[i];
         if (arg.rfind(kRendererFlagPrefix, 0) == 0)
         {
-            config.backend = ParseRendererBackend(arg.substr(kRendererFlagPrefix.size()));
+            const std::string_view value = arg.substr(kRendererFlagPrefix.size());
+            const auto parsed = RendererBackendParser::TryParse(value);
+            if (!parsed)
+            {
+                throw std::invalid_argument("Unknown --renderer value: " + std::string(value));
+            }
+            config.backend = *parsed;
         }
     }
 
