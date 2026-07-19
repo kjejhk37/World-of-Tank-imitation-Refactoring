@@ -14,4 +14,5 @@ namespace ConfigFields
     constexpr const char* kFullscreen = "fullscreen";
     constexpr const char* kVolume = "volume";
     constexpr const char* kRenderer = "renderer";
+    constexpr const char* kWindowTitle = "windowTitle";
 }

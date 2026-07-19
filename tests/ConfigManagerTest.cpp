@@ -39,14 +39,19 @@ TEST(ConfigManagerTest, ReturnsHardcodedDefaultsWhenFileMissing)
     EXPECT_EQ(config.height, 720);
     EXPECT_FALSE(config.fullscreen);
     EXPECT_FLOAT_EQ(config.volume, 1.0f);
-    EXPECT_EQ(config.renderer, RendererBackend::DirectX);
+    EXPECT_EQ(config.renderer, RendererBackend::DirectX11);
+    EXPECT_EQ(config.windowTitle, AppConfig::kDefaultWindowTitle);
 }
 
 TEST(ConfigManagerTest, OverridesDefaultsWithFileValues)
 {
     FakeDataStore store;
-    store.recordToReturn = {
-        {"width", "1920"}, {"height", "1080"}, {"fullscreen", "true"}, {"volume", "0.5"}, {"renderer", "opengl"}};
+    store.recordToReturn = {{"width", "1920"},
+                             {"height", "1080"},
+                             {"fullscreen", "true"},
+                             {"volume", "0.5"},
+                             {"renderer", "opengl"},
+                             {"windowTitle", "Custom Title"}};
 
     const ConfigManager manager(store);
     const AppConfig config = manager.LoadOrDefault("config.json");
@@ -56,6 +61,7 @@ TEST(ConfigManagerTest, OverridesDefaultsWithFileValues)
     EXPECT_TRUE(config.fullscreen);
     EXPECT_FLOAT_EQ(config.volume, 0.5f);
     EXPECT_EQ(config.renderer, RendererBackend::OpenGL);
+    EXPECT_EQ(config.windowTitle, "Custom Title");
 }
 
 TEST(ConfigManagerTest, FallsBackToDefaultOnUnknownRendererValue)
@@ -66,7 +72,7 @@ TEST(ConfigManagerTest, FallsBackToDefaultOnUnknownRendererValue)
     const ConfigManager manager(store);
     const AppConfig config = manager.LoadOrDefault("config.json");
 
-    EXPECT_EQ(config.renderer, RendererBackend::DirectX);
+    EXPECT_EQ(config.renderer, RendererBackend::DirectX11);
 }
 
 TEST(ConfigManagerTest, FallsBackToDefaultOnNonNumericWidth)

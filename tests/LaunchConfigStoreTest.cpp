@@ -7,6 +7,6 @@ TEST(LaunchConfigStoreTest, GetReturnsWhatWasInitialized)
     LaunchConfigStore::Init(LaunchConfig{RendererBackend::OpenGL});
     EXPECT_EQ(LaunchConfigStore::Get().backend, RendererBackend::OpenGL);
 
-    LaunchConfigStore::Init(LaunchConfig{RendererBackend::DirectX});
-    EXPECT_EQ(LaunchConfigStore::Get().backend, RendererBackend::DirectX);
+    LaunchConfigStore::Init(LaunchConfig{RendererBackend::DirectX11});
+    EXPECT_EQ(LaunchConfigStore::Get().backend, RendererBackend::DirectX11);
 }

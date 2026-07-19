@@ -26,10 +26,13 @@ add_library(app_lib STATIC
     src/config/LaunchConfigParser.cpp
     src/config/LaunchConfigStore.cpp
     src/config/ConfigManager.cpp
+    src/platform/Win32Window.cpp
     src/renderer/RendererFactory.cpp
     src/renderer/RendererBackendParser.cpp
-    src/renderer/DirectXRenderer.cpp
-    src/renderer/OpenGLRenderer.cpp
+    src/renderer/directx9/DirectX9Renderer.cpp
+    src/renderer/directx11/DirectX11Renderer.cpp
+    src/renderer/directx12/DirectX12Renderer.cpp
+    src/renderer/opengl/OpenGLRenderer.cpp
     src/serialization/DataRecordAccess.cpp
     src/serialization/JsonDataStore.cpp
     src/serialization/SqliteDataStore.cpp
@@ -38,6 +41,9 @@ add_library(app_lib STATIC
 )
 target_include_directories(app_lib PUBLIC src)
 target_link_libraries(app_lib PRIVATE nlohmann_json::nlohmann_json)
+
+# DirectX 9/11/12는 Windows SDK에 포함된 시스템 라이브러리라 FetchContent 대상이 아니다(googletest/nlohmann::json과 다름).
+target_link_libraries(app_lib PUBLIC d3d9.lib d3d11.lib d3d12.lib dxgi.lib)
 
 add_executable(main src/app/main.cpp)
 target_link_libraries(main PRIVATE app_lib)
@@ -65,6 +71,10 @@ add_executable(tests
     tests/ConfigManagerTest.cpp
     tests/SaveLoadManagerTest.cpp
     tests/PlayerProgressTest.cpp
+    tests/Win32WindowTest.cpp
+    tests/DirectX9RendererTest.cpp
+    tests/DirectX11RendererTest.cpp
+    tests/DirectX12RendererTest.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 

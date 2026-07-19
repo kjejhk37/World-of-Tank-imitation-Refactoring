@@ -8,7 +8,9 @@
       "Bash(*.bat *)",
       "Skill(update-config)",
       "Bash(mkdir -p docs/archive/summary_20260713/task docs/archive/summary_20260713/brainstorming docs/archive/summary_20260713/strategy docs/archive/summary_20260713/commit)",
-      "Bash(git mv *)"
+      "Bash(git mv *)",
+      "Bash(cmake --build .)",
+      "Bash(ctest --output-on-failure)"
     ]
   }
 }

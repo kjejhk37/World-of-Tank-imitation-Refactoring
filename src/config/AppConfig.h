@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "renderer/RendererBackend.h"
 
 // Author: Claude
@@ -10,9 +12,12 @@
 // Date: 2026-07-19
 struct AppConfig
 {
+    static constexpr const char* kDefaultWindowTitle = "World of Tank Imitation";
+
     int width = 1280;
     int height = 720;
     bool fullscreen = false;
     float volume = 1.0f;
-    RendererBackend renderer = RendererBackend::DirectX;
+    RendererBackend renderer = RendererBackend::DirectX11;
+    std::string windowTitle = kDefaultWindowTitle;
 };

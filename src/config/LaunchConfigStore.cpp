@@ -2,7 +2,7 @@
 
 namespace
 {
-    LaunchConfig g_launchConfig{RendererBackend::DirectX};
+    LaunchConfig g_launchConfig{RendererBackend::DirectX11};
 }
 
 namespace LaunchConfigStore

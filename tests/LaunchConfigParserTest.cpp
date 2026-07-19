@@ -4,11 +4,25 @@
 
 #include "config/LaunchConfigParser.h"
 
-TEST(LaunchConfigParserTest, ParsesDirectXFlag)
+TEST(LaunchConfigParserTest, ParsesDirectX11Flag)
 {
-    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx")};
+    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx11")};
     const LaunchConfig config = ParseLaunchConfig(2, argv);
-    EXPECT_EQ(config.backend, RendererBackend::DirectX);
+    EXPECT_EQ(config.backend, RendererBackend::DirectX11);
+}
+
+TEST(LaunchConfigParserTest, ParsesDirectX12Flag)
+{
+    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx12")};
+    const LaunchConfig config = ParseLaunchConfig(2, argv);
+    EXPECT_EQ(config.backend, RendererBackend::DirectX12);
+}
+
+TEST(LaunchConfigParserTest, ParsesDirectX9Flag)
+{
+    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx9")};
+    const LaunchConfig config = ParseLaunchConfig(2, argv);
+    EXPECT_EQ(config.backend, RendererBackend::DirectX9);
 }
 
 TEST(LaunchConfigParserTest, ParsesOpenGLFlag)
@@ -18,11 +32,11 @@ TEST(LaunchConfigParserTest, ParsesOpenGLFlag)
     EXPECT_EQ(config.backend, RendererBackend::OpenGL);
 }
 
-TEST(LaunchConfigParserTest, DefaultsToDirectXWhenFlagMissing)
+TEST(LaunchConfigParserTest, DefaultsToDirectX11WhenFlagMissing)
 {
     char* argv[] = {const_cast<char*>("main")};
     const LaunchConfig config = ParseLaunchConfig(1, argv);
-    EXPECT_EQ(config.backend, RendererBackend::DirectX);
+    EXPECT_EQ(config.backend, RendererBackend::DirectX11);
 }
 
 TEST(LaunchConfigParserTest, ThrowsOnUnknownRendererValue)
@@ -40,7 +54,7 @@ TEST(LaunchConfigParserTest, UsesProvidedDefaultBackendWhenFlagMissing)
 
 TEST(LaunchConfigParserTest, ArgvOverridesProvidedDefaultBackend)
 {
-    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx")};
+    char* argv[] = {const_cast<char*>("main"), const_cast<char*>("--renderer=directx11")};
     const LaunchConfig config = ParseLaunchConfig(2, argv, RendererBackend::OpenGL);
-    EXPECT_EQ(config.backend, RendererBackend::DirectX);
+    EXPECT_EQ(config.backend, RendererBackend::DirectX11);
 }
