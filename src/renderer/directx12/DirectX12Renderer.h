@@ -3,11 +3,13 @@
 #include <wrl/client.h>
 
 #include <array>
+#include <memory>
 
 #include <d3d12.h>
 #include <dxgi1_4.h>
 
 #include "renderer/IRenderer.h"
+#include "ui/directx12/ImGuiManagerDX12.h"
 
 // Author: Claude
 // Description: IRenderer의 DirectX 12 구현. ID3D12Device 등 D3D12 API 호출은 이 클래스(.h/.cpp) 안에만 존재한다.
@@ -18,6 +20,9 @@
 //        kCommandListCount는 확장성 가이드라인(브레인스토밍 참고) — 지금은 1(싱글스레드 기록)이지만, 나중에 커맨드 리스트를
 //        여러 스레드에서 병렬 기록하도록 확장할 때 이 상수와 관련 컨테이너 크기만 늘리면 되게 구조를 열어둔다.
 //        매 프레임 Present 직후 펜스로 GPU를 완전히 대기(WaitForGpu)한다 — 프레임 파이프라이닝 최적화는 이번 사이클 범위 밖.
+//        ImGuiManagerDX12를 멤버로 소유해 ImGui 프레임워크(UI 오버레이)를 배선한다 — 이번 사이클은 프레임워크
+//        확보만 목표라 실제 위젯은 그리지 않는다. IUiManager*가 아니라 구체 타입으로 들고 있는 이유는
+//        RenderWithCommandList(ID3D12GraphicsCommandList*)가 인터페이스 밖 DX12 전용 메서드이기 때문이다.
 // Date: 2026-07-19
 class DirectX12Renderer final : public IRenderer
 {
@@ -29,6 +34,7 @@ public:
     void RenderFrame() override;
     void OnResize(int width, int height) override;
     void Shutdown() override;
+    bool HandleUiMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam) override;
 
 private:
     static constexpr UINT kBackBufferCount = 2;   // DX12 flip-model 스왑체인의 최소 버퍼 요구사항
@@ -47,6 +53,7 @@ private:
     UINT64 m_fenceValue = 0;
     UINT m_rtvDescriptorSize = 0;
     UINT m_frameIndex = 0;
+    std::unique_ptr<ImGuiManagerDX12> m_uiManager;
 
     bool CreateDevice();
     bool CreateSwapChain(HWND windowHandle, int width, int height);

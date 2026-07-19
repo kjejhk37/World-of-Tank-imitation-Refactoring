@@ -16,3 +16,8 @@ void OpenGLRenderer::OnResize(int /*width*/, int /*height*/)
 void OpenGLRenderer::Shutdown()
 {
 }
+
+bool OpenGLRenderer::HandleUiMessage(HWND /*windowHandle*/, UINT /*message*/, WPARAM /*wParam*/, LPARAM /*lParam*/)
+{
+    return false;
+}

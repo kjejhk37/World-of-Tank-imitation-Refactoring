@@ -15,4 +15,5 @@ public:
     void RenderFrame() override;
     void OnResize(int width, int height) override;
     void Shutdown() override;
+    bool HandleUiMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam) override;
 };

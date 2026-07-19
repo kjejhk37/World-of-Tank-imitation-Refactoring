@@ -54,7 +54,13 @@ bool DirectX11Renderer::Initialize(HWND windowHandle, int width, int height)
         return false;
     }
 
-    return CreateRenderTargetView();
+    if (!CreateRenderTargetView())
+    {
+        return false;
+    }
+
+    m_uiManager = std::make_unique<ImGuiManagerDX11>(windowHandle, m_device.Get(), m_context.Get());
+    return true;
 }
 
 void DirectX11Renderer::RenderFrame()
@@ -64,9 +70,12 @@ void DirectX11Renderer::RenderFrame()
         return;
     }
 
+    m_uiManager->NewFrame();
+
     constexpr float kClearColor[4] = {0.0f, 0.0f, 0.0f, 1.0f};
     m_context->OMSetRenderTargets(1, m_renderTargetView.GetAddressOf(), nullptr);
     m_context->ClearRenderTargetView(m_renderTargetView.Get(), kClearColor);
+    m_uiManager->Render();
     m_swapChain->Present(1, 0);
 }
 
@@ -90,8 +99,18 @@ void DirectX11Renderer::OnResize(int width, int height)
 
 void DirectX11Renderer::Shutdown()
 {
+    if (m_uiManager)
+    {
+        m_uiManager->Shutdown();
+        m_uiManager.reset();
+    }
     m_renderTargetView.Reset();
     m_swapChain.Reset();
     m_context.Reset();
     m_device.Reset();
+}
+
+bool DirectX11Renderer::HandleUiMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    return m_uiManager && m_uiManager->HandleWin32Message(windowHandle, message, wParam, lParam);
 }

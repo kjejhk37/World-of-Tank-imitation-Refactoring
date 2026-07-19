@@ -155,16 +155,24 @@ bool DirectX12Renderer::Initialize(HWND windowHandle, int width, int height)
     }
     m_fenceValue = 1;
     m_fenceEvent = CreateEvent(nullptr, FALSE, FALSE, nullptr);
+    if (m_fenceEvent == nullptr)
+    {
+        return false;
+    }
 
-    return m_fenceEvent != nullptr;
+    m_uiManager = std::make_unique<ImGuiManagerDX12>(windowHandle, m_device.Get(), m_commandQueue.Get(),
+                                                       static_cast<int>(kBackBufferCount), DXGI_FORMAT_R8G8B8A8_UNORM);
+    return true;
 }
 
 void DirectX12Renderer::RenderFrame()
 {
-    if (!m_commandQueue || !m_swapChain)
+    if (!m_commandQueue || !m_swapChain || !m_uiManager)
     {
         return;
     }
+
+    m_uiManager->NewFrame();
 
     auto& commandAllocator = m_commandAllocators[0];
     auto& commandList = m_commandLists[0];
@@ -185,6 +193,9 @@ void DirectX12Renderer::RenderFrame()
 
     constexpr float kClearColor[4] = {0.0f, 0.0f, 0.0f, 1.0f};
     commandList->ClearRenderTargetView(rtvHandle, kClearColor, 0, nullptr);
+
+    commandList->OMSetRenderTargets(1, &rtvHandle, FALSE, nullptr);
+    m_uiManager->RenderWithCommandList(commandList.Get());
 
     D3D12_RESOURCE_BARRIER toPresent{};
     toPresent.Type = D3D12_RESOURCE_BARRIER_TYPE_TRANSITION;
@@ -228,6 +239,12 @@ void DirectX12Renderer::Shutdown()
 {
     WaitForGpu();
 
+    if (m_uiManager)
+    {
+        m_uiManager->Shutdown();
+        m_uiManager.reset();
+    }
+
     if (m_fenceEvent != nullptr)
     {
         CloseHandle(m_fenceEvent);
@@ -248,4 +265,9 @@ void DirectX12Renderer::Shutdown()
     m_swapChain.Reset();
     m_commandQueue.Reset();
     m_device.Reset();
+}
+
+bool DirectX12Renderer::HandleUiMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    return m_uiManager && m_uiManager->HandleWin32Message(windowHandle, message, wParam, lParam);
 }

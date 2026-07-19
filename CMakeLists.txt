@@ -22,6 +22,16 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(nlohmann_json)
 
+# Dear ImGui는 nlohmann_json/googletest와 달리 소비자용 CMakeLists.txt를 제공하지 않는다 —
+# FetchContent는 소스만 받아오고(add_subdirectory 없음), 필요한 .cpp만 app_lib에 직접 추가한다.
+# (docs/dependency/imgui_20260719.md 참고)
+FetchContent_Declare(
+    imgui
+    URL https://github.com/ocornut/imgui/archive/refs/tags/v1.92.8.zip
+    DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+)
+FetchContent_MakeAvailable(imgui)
+
 add_library(app_lib STATIC
     src/config/LaunchConfigParser.cpp
     src/config/LaunchConfigStore.cpp
@@ -43,8 +53,20 @@ add_library(app_lib STATIC
     src/serialization/SqliteDataStore.cpp
     src/persistence/SaveLoadManager.cpp
     src/persistence/PlayerProgress.cpp
+    src/ui/directx9/ImGuiManagerDX9.cpp
+    src/ui/directx11/ImGuiManagerDX11.cpp
+    src/ui/directx12/ImGuiManagerDX12.cpp
+    ${imgui_SOURCE_DIR}/imgui.cpp
+    ${imgui_SOURCE_DIR}/imgui_draw.cpp
+    ${imgui_SOURCE_DIR}/imgui_tables.cpp
+    ${imgui_SOURCE_DIR}/imgui_widgets.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_win32.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_dx9.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
+    ${imgui_SOURCE_DIR}/backends/imgui_impl_dx12.cpp
 )
 target_include_directories(app_lib PUBLIC src)
+target_include_directories(app_lib PRIVATE ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/backends)
 target_link_libraries(app_lib PRIVATE nlohmann_json::nlohmann_json)
 
 # DirectX 9/11/12는 Windows SDK에 포함된 시스템 라이브러리라 FetchContent 대상이 아니다(googletest/nlohmann::json과 다름).
@@ -85,6 +107,9 @@ add_executable(tests
     tests/DirectX9RendererTest.cpp
     tests/DirectX11RendererTest.cpp
     tests/DirectX12RendererTest.cpp
+    tests/ImGuiManagerDX9Test.cpp
+    tests/ImGuiManagerDX11Test.cpp
+    tests/ImGuiManagerDX12Test.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 

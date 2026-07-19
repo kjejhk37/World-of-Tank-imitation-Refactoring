@@ -26,6 +26,8 @@ namespace
 //        LaunchConfigStore::Init은 반드시 이 함수 안에서, 다른 스레드가 뜨기 전에 1회만 호출되어야 한다.
 //        Log::Init은 다른 어떤 try/catch보다도 먼저 호출한다 — 이후의 모든 에러가 Log::Error(ErrorCode, ...)로 기록되게 하기 위함.
 //        창 리사이즈는 Win32Window의 콜백을 통해 renderer->OnResize로 연결한다 — Win32Window는 IRenderer를 알지 못한다(SRP).
+//        같은 이유로 Win32 메시지는 SetMessageHook을 통해 renderer->HandleUiMessage로 연결한다 —
+//        각 렌더러가 소유한 ImGui 프레임워크가 이 메시지를 소비할 수 있게 하되, Win32Window는 ImGui의 존재를 모른다.
 // Date: 2026-07-19
 int main(int argc, char** argv)
 {
@@ -71,6 +73,9 @@ int main(int argc, char** argv)
     }
 
     window->SetResizeCallback([&renderer](int width, int height) { renderer->OnResize(width, height); });
+    window->SetMessageHook([&renderer](HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam) {
+        return renderer->HandleUiMessage(hwnd, message, wParam, lParam);
+    });
 
     while (window->PumpMessages())
     {

@@ -118,6 +118,11 @@ void Win32Window::SetResizeCallback(std::function<void(int, int)> callback)
     m_resizeCallback = std::move(callback);
 }
 
+void Win32Window::SetMessageHook(std::function<bool(HWND, UINT, WPARAM, LPARAM)> hook)
+{
+    m_messageHook = std::move(hook);
+}
+
 LRESULT CALLBACK Win32Window::WndProc(HWND hwnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     Win32Window* window = nullptr;
@@ -131,6 +136,11 @@ LRESULT CALLBACK Win32Window::WndProc(HWND hwnd, UINT message, WPARAM wParam, LP
     else
     {
         window = reinterpret_cast<Win32Window*>(GetWindowLongPtr(hwnd, GWLP_USERDATA));
+    }
+
+    if (window != nullptr && window->m_messageHook && window->m_messageHook(hwnd, message, wParam, lParam))
+    {
+        return true;
     }
 
     switch (message)

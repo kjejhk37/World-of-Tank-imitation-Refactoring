@@ -29,7 +29,13 @@ bool DirectX9Renderer::Initialize(HWND windowHandle, int width, int height)
     const HRESULT hr = m_direct3D->CreateDevice(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, windowHandle,
                                                  D3DCREATE_HARDWARE_VERTEXPROCESSING, &presentParams,
                                                  m_device.GetAddressOf());
-    return SUCCEEDED(hr);
+    if (FAILED(hr))
+    {
+        return false;
+    }
+
+    m_uiManager = std::make_unique<ImGuiManagerDX9>(windowHandle, m_device.Get());
+    return true;
 }
 
 void DirectX9Renderer::RenderFrame()
@@ -39,8 +45,11 @@ void DirectX9Renderer::RenderFrame()
         return;
     }
 
+    m_uiManager->NewFrame();
+
     m_device->Clear(0, nullptr, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0, 0, 0), 1.0f, 0);
     m_device->BeginScene();
+    m_uiManager->Render();
     m_device->EndScene();
     m_device->Present(nullptr, nullptr, nullptr, nullptr);
 }
@@ -58,6 +67,16 @@ void DirectX9Renderer::OnResize(int width, int height)
 
 void DirectX9Renderer::Shutdown()
 {
+    if (m_uiManager)
+    {
+        m_uiManager->Shutdown();
+        m_uiManager.reset();
+    }
     m_device.Reset();
     m_direct3D.Reset();
+}
+
+bool DirectX9Renderer::HandleUiMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam)
+{
+    return m_uiManager && m_uiManager->HandleWin32Message(windowHandle, message, wParam, lParam);
 }
