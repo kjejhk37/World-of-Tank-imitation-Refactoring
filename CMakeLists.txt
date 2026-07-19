@@ -53,6 +53,8 @@ add_library(app_lib STATIC
     src/serialization/SqliteDataStore.cpp
     src/persistence/SaveLoadManager.cpp
     src/persistence/PlayerProgress.cpp
+    src/math/Matrix4x4.cpp
+    src/geometry/Intersections.cpp
     src/ui/directx9/ImGuiManagerDX9.cpp
     src/ui/directx11/ImGuiManagerDX11.cpp
     src/ui/directx12/ImGuiManagerDX12.cpp
@@ -110,6 +112,13 @@ add_executable(tests
     tests/ImGuiManagerDX9Test.cpp
     tests/ImGuiManagerDX11Test.cpp
     tests/ImGuiManagerDX12Test.cpp
+    tests/Vec3Test.cpp
+    tests/QuaternionTest.cpp
+    tests/Matrix4x4Test.cpp
+    tests/TransformTest.cpp
+    tests/AABBTest.cpp
+    tests/OBBTest.cpp
+    tests/IntersectionsTest.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 
