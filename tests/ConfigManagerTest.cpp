@@ -41,6 +41,7 @@ TEST(ConfigManagerTest, ReturnsHardcodedDefaultsWhenFileMissing)
     EXPECT_FLOAT_EQ(config.volume, 1.0f);
     EXPECT_EQ(config.renderer, RendererBackend::DirectX11);
     EXPECT_EQ(config.windowTitle, AppConfig::kDefaultWindowTitle);
+    EXPECT_TRUE(config.logFilePath.empty());
 }
 
 TEST(ConfigManagerTest, OverridesDefaultsWithFileValues)
@@ -51,7 +52,8 @@ TEST(ConfigManagerTest, OverridesDefaultsWithFileValues)
                              {"fullscreen", "true"},
                              {"volume", "0.5"},
                              {"renderer", "opengl"},
-                             {"windowTitle", "Custom Title"}};
+                             {"windowTitle", "Custom Title"},
+                             {"logFilePath", "logs/app.txt"}};
 
     const ConfigManager manager(store);
     const AppConfig config = manager.LoadOrDefault("config.json");
@@ -62,6 +64,7 @@ TEST(ConfigManagerTest, OverridesDefaultsWithFileValues)
     EXPECT_FLOAT_EQ(config.volume, 0.5f);
     EXPECT_EQ(config.renderer, RendererBackend::OpenGL);
     EXPECT_EQ(config.windowTitle, "Custom Title");
+    EXPECT_EQ(config.logFilePath, "logs/app.txt");
 }
 
 TEST(ConfigManagerTest, FallsBackToDefaultOnUnknownRendererValue)

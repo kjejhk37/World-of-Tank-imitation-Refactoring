@@ -21,6 +21,7 @@ C++ (DirectX 11 → 상위 버전 마이그레이션 대상)
 src/
   app/              # 진입점(main.cpp) 및 조립(composition root)
   config/           # LaunchConfig(argv) + AppConfig/ConfigManager(JSON 파일 기반)
+  logging/          # 로그 등급/포맷/싱크(콘솔·파일) + 전역 Log 래퍼, ErrorCode
   platform/         # OS/플랫폼 종속 컴포넌트 (Win32Window 등)
   renderer/         # 렌더러 백엔드 선택/구현 (DirectX9/11/12, OpenGL)
   persistence/       # Save/Load 시스템 (ISaveable, SaveLoadManager)

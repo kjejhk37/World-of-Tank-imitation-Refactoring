@@ -1,10 +1,11 @@
-#include <cstdio>
 #include <memory>
 #include <stdexcept>
 
 #include "config/ConfigManager.h"
 #include "config/LaunchConfigParser.h"
 #include "config/LaunchConfigStore.h"
+#include "logging/ErrorCode.h"
+#include "logging/Log.h"
 #include "platform/Win32Window.h"
 #include "renderer/RendererFactory.h"
 #include "serialization/JsonDataStore.h"
@@ -23,6 +24,7 @@ namespace
 // Output: 종료 코드 (0: 정상, 1: 인자 파싱/창 생성 실패 또는 렌더러 생성/초기화 실패)
 // Notes: 설정 적용 순서는 하드코딩 기본값(AppConfig) -> config.json -> argv 순이다.
 //        LaunchConfigStore::Init은 반드시 이 함수 안에서, 다른 스레드가 뜨기 전에 1회만 호출되어야 한다.
+//        Log::Init은 다른 어떤 try/catch보다도 먼저 호출한다 — 이후의 모든 에러가 Log::Error(ErrorCode, ...)로 기록되게 하기 위함.
 //        창 리사이즈는 Win32Window의 콜백을 통해 renderer->OnResize로 연결한다 — Win32Window는 IRenderer를 알지 못한다(SRP).
 // Date: 2026-07-19
 int main(int argc, char** argv)
@@ -31,13 +33,15 @@ int main(int argc, char** argv)
     const ConfigManager configManager(configStore);
     const AppConfig appConfig = configManager.LoadOrDefault(kDefaultConfigFilePath);
 
+    Log::Init(appConfig.logFilePath);
+
     try
     {
         LaunchConfigStore::Init(ParseLaunchConfig(argc, argv, appConfig.renderer));
     }
     catch (const std::invalid_argument& e)
     {
-        std::fprintf(stderr, "%s\n", e.what());
+        Log::Error(ErrorCode::LaunchConfigParseFailed, e.what());
         return 1;
     }
 
@@ -49,20 +53,20 @@ int main(int argc, char** argv)
     }
     catch (const std::runtime_error& e)
     {
-        std::fprintf(stderr, "%s\n", e.what());
+        Log::Error(ErrorCode::WindowCreationFailed, e.what());
         return 1;
     }
 
     auto renderer = RendererFactory::Create(LaunchConfigStore::Get());
     if (!renderer)
     {
-        std::fprintf(stderr, "Unknown renderer backend\n");
+        Log::Error(ErrorCode::UnknownRendererBackend, "Unknown renderer backend");
         return 1;
     }
 
     if (!renderer->Initialize(window->Handle(), window->ClientWidth(), window->ClientHeight()))
     {
-        std::fprintf(stderr, "Failed to initialize renderer\n");
+        Log::Error(ErrorCode::RendererInitializationFailed, "Failed to initialize renderer");
         return 1;
     }
 

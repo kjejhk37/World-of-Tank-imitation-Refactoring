@@ -26,6 +26,11 @@ add_library(app_lib STATIC
     src/config/LaunchConfigParser.cpp
     src/config/LaunchConfigStore.cpp
     src/config/ConfigManager.cpp
+    src/logging/LogFormatter.cpp
+    src/logging/ConsoleLogSink.cpp
+    src/logging/FileLogSink.cpp
+    src/logging/Logger.cpp
+    src/logging/Log.cpp
     src/platform/Win32Window.cpp
     src/renderer/RendererFactory.cpp
     src/renderer/RendererBackendParser.cpp
@@ -71,6 +76,11 @@ add_executable(tests
     tests/ConfigManagerTest.cpp
     tests/SaveLoadManagerTest.cpp
     tests/PlayerProgressTest.cpp
+    tests/LogFormatterTest.cpp
+    tests/ConsoleLogSinkTest.cpp
+    tests/FileLogSinkTest.cpp
+    tests/LoggerTest.cpp
+    tests/LogTest.cpp
     tests/Win32WindowTest.cpp
     tests/DirectX9RendererTest.cpp
     tests/DirectX11RendererTest.cpp

@@ -34,6 +34,7 @@ AppConfig ConfigManager::LoadOrDefault(const std::string& configFilePath) const
     config.volume = DataRecordAccess::GetFloatOr(record, ConfigFields::kVolume, config.volume);
     config.renderer = ParseRendererBackendOr(record, ConfigFields::kRenderer, config.renderer);
     config.windowTitle = DataRecordAccess::GetStringOr(record, ConfigFields::kWindowTitle, config.windowTitle);
+    config.logFilePath = DataRecordAccess::GetStringOr(record, ConfigFields::kLogFilePath, config.logFilePath);
 
     return config;
 }
