@@ -55,6 +55,20 @@ add_library(app_lib STATIC
     src/persistence/PlayerProgress.cpp
     src/math/Matrix4x4.cpp
     src/geometry/Intersections.cpp
+    src/geometry/Geometry.cpp
+    src/collision/gjk_epa/Gjk.cpp
+    src/collision/gjk_epa/Epa.cpp
+    src/collision/gjk_epa/GjkEpa.cpp
+    src/collision/sweep_and_prune/SweepAndPrune.cpp
+    src/collision/bvh/Bvh.cpp
+    src/collision/rtree/RTree.cpp
+    src/collision/voxel_grid/VoxelGrid.cpp
+    src/collision/spatial_hash/SpatialHash.cpp
+    src/collision/octree/Octree.cpp
+    src/collision/kdtree/KdTree.cpp
+    src/collision/mpr/Mpr.cpp
+    src/collision/conservative_advancement/ConservativeAdvancement.cpp
+    src/collision/fcl/Fcl.cpp
     src/ui/directx9/ImGuiManagerDX9.cpp
     src/ui/directx11/ImGuiManagerDX11.cpp
     src/ui/directx12/ImGuiManagerDX12.cpp
@@ -119,6 +133,18 @@ add_executable(tests
     tests/AABBTest.cpp
     tests/OBBTest.cpp
     tests/IntersectionsTest.cpp
+    tests/GeometryTest.cpp
+    tests/GjkEpaTest.cpp
+    tests/SweepAndPruneTest.cpp
+    tests/BvhTest.cpp
+    tests/RTreeTest.cpp
+    tests/VoxelGridTest.cpp
+    tests/SpatialHashTest.cpp
+    tests/OctreeTest.cpp
+    tests/KdTreeTest.cpp
+    tests/MprTest.cpp
+    tests/ConservativeAdvancementTest.cpp
+    tests/FclTest.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 
