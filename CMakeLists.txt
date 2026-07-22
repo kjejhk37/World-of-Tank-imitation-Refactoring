@@ -69,6 +69,8 @@ add_library(app_lib STATIC
     src/collision/mpr/Mpr.cpp
     src/collision/conservative_advancement/ConservativeAdvancement.cpp
     src/collision/fcl/Fcl.cpp
+    src/entity_component/Entity.cpp
+    src/entity_component/EntityManager.cpp
     src/ui/directx9/ImGuiManagerDX9.cpp
     src/ui/directx11/ImGuiManagerDX11.cpp
     src/ui/directx12/ImGuiManagerDX12.cpp
@@ -145,6 +147,8 @@ add_executable(tests
     tests/MprTest.cpp
     tests/ConservativeAdvancementTest.cpp
     tests/FclTest.cpp
+    tests/EntityTest.cpp
+    tests/EntityManagerTest.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 
