@@ -12,7 +12,8 @@
 
 ## 현재 상태에서 확인된 이슈
 
-- [LOW] `Win32WindowTest.PumpMessagesReturnsTrueWhenNoQuitPosted` 1건 실패 — 이전 사이클들에서도 동일하게 보고된 기존 이슈, 이번 사이클과 무관.
+- [RESOLVED] `Win32WindowTest.PumpMessagesReturnsTrueWhenNoQuitPosted` 1건 실패 — 이전 사이클들에서도 동일하게 보고된 기존 이슈, 이번 사이클과 무관.
+  → resolved: `tests/Win32WindowTest.cpp`에 픽스처 추가, SetUp()에서 잔여 WM_QUIT 드레인. 227/227 테스트 통과 확인 (2026-07-22).
 - [DEFERRED] (범위 밖, 기록용) 이번 구현은 실제 지지 함수 기반 최단 거리 대신 경계 구로 근사한다 — 늘어진(가늘고 긴) 도형일수록 경계 구가 실제 형태보다 훨씬 헐거워 TOI가 실제보다 이르게(더 보수적으로) 나올 수 있다. 정확한 지지 함수 기반 CCD는 별도의 최단 거리 서브 알고리즘이 필요해 다음 사이클 후보로 기록만 함.
 
 ## 체크리스트/검증 상태

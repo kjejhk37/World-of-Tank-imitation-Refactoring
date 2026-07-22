@@ -2,19 +2,40 @@
 
 #include "platform/Win32Window.h"
 
-TEST(Win32WindowTest, CreatesValidWindowedHandle)
+namespace
+{
+    // Win32Window 소멸자는 WM_DESTROY 시 PostQuitMessage(0)을 호출한다(프로덕션의 단일 윈도우
+    // 앱에서는 의도된 동작). 같은 스레드에서 윈도우를 연속 생성/파괴하는 테스트에서는 이전 테스트가
+    // 남긴 WM_QUIT이 다음 테스트의 메시지 큐에 남아 PumpMessages()를 오염시키므로, 각 테스트 시작
+    // 전 잔여 메시지를 비워 테스트 간 순서 의존성을 없앤다.
+    void DrainPendingMessages()
+    {
+        MSG msg{};
+        while (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+        {
+        }
+    }
+}
+
+class Win32WindowTest : public ::testing::Test
+{
+protected:
+    void SetUp() override { DrainPendingMessages(); }
+};
+
+TEST_F(Win32WindowTest, CreatesValidWindowedHandle)
 {
     Win32Window window(1280, 720, "Win32WindowTest", false);
     EXPECT_NE(window.Handle(), nullptr);
 }
 
-TEST(Win32WindowTest, CreatesValidFullscreenHandle)
+TEST_F(Win32WindowTest, CreatesValidFullscreenHandle)
 {
     Win32Window window(1280, 720, "Win32WindowTest", true);
     EXPECT_NE(window.Handle(), nullptr);
 }
 
-TEST(Win32WindowTest, FullscreenClientSizeMatchesScreenResolution)
+TEST_F(Win32WindowTest, FullscreenClientSizeMatchesScreenResolution)
 {
     Win32Window window(1280, 720, "Win32WindowTest", true);
 
@@ -22,13 +43,13 @@ TEST(Win32WindowTest, FullscreenClientSizeMatchesScreenResolution)
     EXPECT_EQ(window.ClientHeight(), GetSystemMetrics(SM_CYSCREEN));
 }
 
-TEST(Win32WindowTest, PumpMessagesReturnsTrueWhenNoQuitPosted)
+TEST_F(Win32WindowTest, PumpMessagesReturnsTrueWhenNoQuitPosted)
 {
     Win32Window window(1280, 720, "Win32WindowTest", false);
     EXPECT_TRUE(window.PumpMessages());
 }
 
-TEST(Win32WindowTest, MessageHookReceivesMessagesAndCanClaimThem)
+TEST_F(Win32WindowTest, MessageHookReceivesMessagesAndCanClaimThem)
 {
     Win32Window window(1280, 720, "Win32WindowTest", false);
 
@@ -51,7 +72,7 @@ TEST(Win32WindowTest, MessageHookReceivesMessagesAndCanClaimThem)
     EXPECT_EQ(result, TRUE);
 }
 
-TEST(Win32WindowTest, MessageHookReturningFalseDoesNotBlockResizeCallback)
+TEST_F(Win32WindowTest, MessageHookReturningFalseDoesNotBlockResizeCallback)
 {
     Win32Window window(1280, 720, "Win32WindowTest", false);
 
