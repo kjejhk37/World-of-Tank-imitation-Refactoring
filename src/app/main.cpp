@@ -1,9 +1,11 @@
 #include <memory>
 #include <stdexcept>
+#include <system_error>
 
 #include "config/ConfigManager.h"
 #include "config/LaunchConfigParser.h"
 #include "config/LaunchConfigStore.h"
+#include "engine/InstanceUpdateWorker.h"
 #include "logging/ErrorCode.h"
 #include "logging/Log.h"
 #include "platform/Win32Window.h"
@@ -28,6 +30,15 @@ namespace
 //        창 리사이즈는 Win32Window의 콜백을 통해 renderer->OnResize로 연결한다 — Win32Window는 IRenderer를 알지 못한다(SRP).
 //        같은 이유로 Win32 메시지는 SetMessageHook을 통해 renderer->HandleUiMessage로 연결한다 —
 //        각 렌더러가 소유한 ImGui 프레임워크가 이 메시지를 소비할 수 있게 하되, Win32Window는 ImGui의 존재를 모른다.
+//        InstanceUpdateWorker(Engine 스레드)는 renderer->Initialize() 성공 이후, 메시지 루프 진입
+//        전에 Start()한다 - main/렌더러는 IFrameDataPublisher의 동기화 정책을 몰라도 되고, 매 프레임
+//        worker.GetPublisher().AcquireReadSnapshot()으로 얻은 순수 데이터만 renderer->RenderFrame에
+//        넘긴다(SRP). worker.Stop()은 renderer->Shutdown() 이전에 정확히 1회 호출한다 - Stop()은
+//        Start()가 호출된 적 없어도 안전(no-op)하므로, 창 생성/렌더러 초기화 실패로 인한 조기
+//        반환 경로 뒤에 worker가 아직 없더라도(scope 밖) 문제 없다. std::thread 생성이 OS 자원
+//        고갈 등으로 실패하면 std::system_error를 던지는데, 이 스레드는 인스턴스 스냅샷을 만드는
+//        보조 워커일 뿐이라(렌더러는 빈 스냅샷일 때 이미 Baseline 단일 드로우로 폴백한다) 실패해도
+//        앱 전체를 종료시키지 않고 로그만 남긴 뒤 계속 진행한다.
 // Date: 2026-07-19
 int main(int argc, char** argv)
 {
@@ -77,11 +88,22 @@ int main(int argc, char** argv)
         return renderer->HandleUiMessage(hwnd, message, wParam, lParam);
     });
 
-    while (window->PumpMessages())
+    InstanceUpdateWorker worker;
+    try
     {
-        renderer->RenderFrame();
+        worker.Start();
+    }
+    catch (const std::system_error& e)
+    {
+        Log::Error(ErrorCode::EngineWorkerStartFailed, e.what());
     }
 
+    while (window->PumpMessages())
+    {
+        renderer->RenderFrame(worker.GetPublisher().AcquireReadSnapshot());
+    }
+
+    worker.Stop();
     renderer->Shutdown();
 
     return 0;

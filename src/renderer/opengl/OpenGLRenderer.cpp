@@ -5,7 +5,7 @@ bool OpenGLRenderer::Initialize(HWND /*windowHandle*/, int /*width*/, int /*heig
     return true;
 }
 
-void OpenGLRenderer::RenderFrame()
+void OpenGLRenderer::RenderFrame(const InstanceSnapshot& /*snapshot*/)
 {
 }
 

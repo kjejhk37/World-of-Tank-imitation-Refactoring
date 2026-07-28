@@ -77,9 +77,12 @@ add_library(app_lib STATIC
     src/platform/Win32Window.cpp
     src/renderer/RendererFactory.cpp
     src/renderer/RendererBackendParser.cpp
+    src/renderer/ShaderBytecodeLoader.cpp
     src/renderer/directx9/DirectX9Renderer.cpp
     src/renderer/directx11/DirectX11Renderer.cpp
+    src/renderer/directx11/DirectX11ComputeDemo.cpp
     src/renderer/directx12/DirectX12Renderer.cpp
+    src/renderer/directx12/DirectX12ComputeDemo.cpp
     src/renderer/opengl/OpenGLRenderer.cpp
     src/serialization/DataRecordAccess.cpp
     src/serialization/JsonDataStore.cpp
@@ -114,6 +117,7 @@ add_library(app_lib STATIC
     src/model_import/HotReloadCachePolicy.cpp
     src/model_import/NaiveSignatureDeduplicator.cpp
     src/model_import/MeshManager.cpp
+    src/engine/InstanceUpdateWorker.cpp
     ${ufbx_SOURCE_DIR}/ufbx.c
     src/ui/directx9/ImGuiManagerDX9.cpp
     src/ui/directx11/ImGuiManagerDX11.cpp
@@ -135,8 +139,85 @@ target_link_libraries(app_lib PRIVATE nlohmann_json::nlohmann_json tinyobjloader
 # DirectX 9/11/12는 Windows SDK에 포함된 시스템 라이브러리라 FetchContent 대상이 아니다(googletest/nlohmann::json과 다름).
 target_link_libraries(app_lib PUBLIC d3d9.lib d3d11.lib d3d12.lib dxgi.lib)
 
+# --- 셰이더 빌드 파이프라인 (오프라인 컴파일, fxc.exe) ---
+# 배포 시 D3DCompiler_47.dll 의존성을 없애기 위해 HLSL을 런타임이 아닌 빌드 시점에 fxc.exe로 컴파일한다.
+# (docs/strategy/DirectX_Shader_기초연결_20260726_1400.md 체크리스트 1 참고)
+# fxc.exe는 Windows SDK에 포함되지만 PATH에 없는 경우가 많아, 설치된 모든 SDK 버전의 x64 디렉터리를
+# 검색 경로 후보로 넘겨 find_program이 찾게 한다.
+file(GLOB _wot_fxc_candidates "C:/Program Files (x86)/Windows Kits/10/bin/*/x64/fxc.exe")
+set(_wot_fxc_search_dirs "")
+foreach(_wot_fxc_candidate ${_wot_fxc_candidates})
+    get_filename_component(_wot_fxc_dir "${_wot_fxc_candidate}" DIRECTORY)
+    list(APPEND _wot_fxc_search_dirs "${_wot_fxc_dir}")
+endforeach()
+
+find_program(FXC_EXECUTABLE fxc PATHS ${_wot_fxc_search_dirs})
+if(NOT FXC_EXECUTABLE)
+    message(FATAL_ERROR "fxc.exe(HLSL 오프라인 셰이더 컴파일러)를 찾을 수 없습니다 - Windows SDK 설치를 확인하세요.")
+endif()
+
+# 셰이더 소스는 백엔드별 폴더(src/renderer/<backend>/shaders/<name>.hlsl)에 두고, <backend>는 그
+# 경로에서 자동으로 추론한다 - "각 렌더러는 자기 폴더의 셰이더만 참조한다"는 기존 원칙과 같은 결이다.
+# 컴파일된 .cso는 실행 파일과 같은 위치(<config>/shaders/<backend>/)에 출력해, main.exe가 상대
+# 경로로 바로 로드할 수 있게 한다. WOT_SHADER_OUTPUTS는 이후 체크리스트(6/8/9)에서 각 셰이더가
+# 등록될 때마다 누적되고, 마지막에(체크리스트 11) `shaders` 커스텀 타겟으로 한데 묶인다.
+set(WOT_SHADER_OUTPUTS "")
+
+function(wot_add_hlsl_shader OUT_VAR SOURCE ENTRY_POINT PROFILE)
+    # 주의: NAME_WE는 "가장 긴 확장자"를 통째로 잘라내므로 "Baseline.vs.hlsl" -> "Baseline"이 되어
+    # vs/ps 두 셰이더가 같은 출력 파일명으로 충돌한다(실제로 재현 확인함) - 파일 전체 이름에서
+    # 마지막 ".hlsl" 확장자만 정규식으로 제거해 "Baseline.vs"/"Baseline.ps"를 그대로 보존한다.
+    get_filename_component(_shader_full_name "${SOURCE}" NAME)
+    string(REGEX REPLACE "\\.hlsl$" "" _shader_name "${_shader_full_name}")
+    get_filename_component(_shaders_dir "${SOURCE}" DIRECTORY)
+    get_filename_component(_backend_dir "${_shaders_dir}" DIRECTORY)
+    get_filename_component(_backend "${_backend_dir}" NAME)
+
+    # 주의: $<TARGET_FILE_DIR:main> 같은 "다른 타겟을 참조하는" 제너레이터 표현식은 Visual Studio
+    # 멀티 컨피그 생성기에서 add_custom_command의 OUTPUT 경로로 쓰면 "No target main" 생성 오류가
+    # 난다(다른 타겟의 속성에 의존하는 OUTPUT 경로는 CMake가 안정적으로 평가하지 못함 - 실제로 재현
+    # 확인함). main.exe가 실제로 출력되는 위치(${CMAKE_BINARY_DIR}/$<CONFIG>/, 이 프로젝트는
+    # CMAKE_RUNTIME_OUTPUT_DIRECTORY를 별도로 설정하지 않아 이게 VS 생성기의 기본 출력 위치다)를
+    # $<CONFIG>만 사용해 직접 구성한다 - $<CONFIG>는 특정 타겟을 참조하지 않는 단순 제너레이터
+    # 표현식이라 OUTPUT 경로에 안전하게 쓸 수 있다.
+    set(_output_dir "${CMAKE_BINARY_DIR}/$<CONFIG>/shaders/${_backend}")
+    set(_output_file "${_output_dir}/${_shader_name}.cso")
+
+    add_custom_command(
+        OUTPUT "${_output_file}"
+        COMMAND ${CMAKE_COMMAND} -E make_directory "${_output_dir}"
+        COMMAND ${FXC_EXECUTABLE} /nologo /T ${PROFILE} /E ${ENTRY_POINT} /Fo "${_output_file}" "${SOURCE}"
+        DEPENDS "${SOURCE}"
+        COMMENT "HLSL: ${SOURCE} (${PROFILE}, entry=${ENTRY_POINT}) -> ${_output_file}"
+        VERBATIM
+    )
+
+    set(${OUT_VAR} "${_output_file}" PARENT_SCOPE)
+endfunction()
+
 add_executable(main src/app/main.cpp)
 target_link_libraries(main PRIVATE app_lib)
+
+# wot_add_hlsl_shader()가 만드는 add_custom_command는 $<TARGET_FILE_DIR:main>을 참조하므로,
+# main 타겟이 add_executable로 이미 선언된 뒤에 호출해야 한다.
+wot_add_hlsl_shader(_wot_dx9_baseline_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx9/shaders/Baseline.vs.hlsl" VSMain vs_3_0)
+wot_add_hlsl_shader(_wot_dx9_baseline_ps "${CMAKE_SOURCE_DIR}/src/renderer/directx9/shaders/Baseline.ps.hlsl" PSMain ps_3_0)
+wot_add_hlsl_shader(_wot_dx11_baseline_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Baseline.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx11_baseline_ps "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Baseline.ps.hlsl" PSMain ps_5_0)
+wot_add_hlsl_shader(_wot_dx12_baseline_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Baseline.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx12_baseline_ps "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Baseline.ps.hlsl" PSMain ps_5_0)
+wot_add_hlsl_shader(_wot_dx9_instancing_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx9/shaders/Instancing.vs.hlsl" VSMain vs_3_0)
+wot_add_hlsl_shader(_wot_dx11_instancing_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Instancing.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx12_instancing_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Instancing.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx11_transform_cs "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Transform.cs.hlsl" CSMain cs_5_0)
+wot_add_hlsl_shader(_wot_dx12_transform_cs "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Transform.cs.hlsl" CSMain cs_5_0)
+list(APPEND WOT_SHADER_OUTPUTS
+    ${_wot_dx9_baseline_vs} ${_wot_dx9_baseline_ps}
+    ${_wot_dx11_baseline_vs} ${_wot_dx11_baseline_ps}
+    ${_wot_dx12_baseline_vs} ${_wot_dx12_baseline_ps}
+    ${_wot_dx9_instancing_vs} ${_wot_dx11_instancing_vs} ${_wot_dx12_instancing_vs}
+    ${_wot_dx11_transform_cs} ${_wot_dx12_transform_cs}
+)
 
 # GoogleTest는 tests 타겟에만 링크한다 — main/app_lib은 테스트 프레임워크에 의존하지 않는다.
 # (docs/dependency/googletest_20260715.md 참고)
@@ -201,9 +282,46 @@ add_executable(tests
     tests/HotReloadCachePolicyTest.cpp
     tests/NaiveSignatureDeduplicatorTest.cpp
     tests/MeshManagerTest.cpp
+    tests/DoubleBufferPublisherTest.cpp
+    tests/InstanceUpdateWorkerTest.cpp
+    tests/ShaderBytecodeLoaderTest.cpp
+    tests/DirectX11ComputeDemoTest.cpp
+    tests/DirectX12ComputeDemoTest.cpp
 )
 target_link_libraries(tests PRIVATE app_lib gtest_main)
 target_compile_definitions(tests PRIVATE MODEL_IMPORT_FIXTURES_DIR="${CMAKE_SOURCE_DIR}/tests/fixtures/model_import/")
+target_compile_definitions(tests PRIVATE WOT_SHADER_OUTPUT_DIR="${CMAKE_BINARY_DIR}/$<CONFIG>/shaders/")
 
+# WORKING_DIRECTORY 미지정 시 gtest_discover_tests는 (멀티 컨피그 생성기에서 tests.exe가 실제로
+# 있는 build/<Config>/가 아니라) 최상위 빌드 디렉터리를 각 테스트의 실행 위치로 쓴다 - 렌더러가
+# 상대 경로("shaders/<backend>/...", "assets/models/cube.obj")로 셰이더/에셋을 찾으므로, ctest로
+# 실행할 때도 tests.exe와 같은 디렉터리에서 실행되도록 명시해야 한다(실제로 재현 확인함).
 include(GoogleTest)
-gtest_discover_tests(tests)
+gtest_discover_tests(tests WORKING_DIRECTORY "$<TARGET_FILE_DIR:tests>")
+
+# 하드코딩 삼각형(체크리스트 6)에서 MeshManager로 로드한 실제 큐브 모델(체크리스트 7)로 교체하며,
+# 렌더러가 상대 경로 "assets/models/cube.obj"로 읽을 수 있게 실행 파일 옆에 복사해 둔다.
+# TARGET POST_BUILD 커스텀 커맨드는(순수 add_custom_command(OUTPUT ...)와 달리) $<TARGET_FILE_DIR:...>
+# 제너레이터 표현식을 안전하게 지원한다 - 위 wot_add_hlsl_shader()가 이 방식 대신
+# ${CMAKE_BINARY_DIR}/$<CONFIG>를 쓴 이유(OUTPUT 절에서의 제약)와는 다른 경우다.
+add_custom_command(TARGET main POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:main>/assets/models"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/tests/fixtures/model_import/cube.obj"
+        "$<TARGET_FILE_DIR:main>/assets/models/cube.obj"
+    COMMENT "Copying cube.obj next to main.exe"
+)
+add_custom_command(TARGET tests POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:tests>/assets/models"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/tests/fixtures/model_import/cube.obj"
+        "$<TARGET_FILE_DIR:tests>/assets/models/cube.obj"
+    COMMENT "Copying cube.obj next to tests.exe"
+)
+
+# 이 시점까지 등록된 모든 wot_add_hlsl_shader() 호출(체크리스트 6/8/9)의 .cso 출력을 하나의
+# 커스텀 타겟으로 묶는다 - main/tests 둘 다 셰이더가 빌드된 뒤에 실행되어야 하므로 의존시킨다.
+# (docs/strategy/DirectX_Shader_기초연결_20260726_1400.md 체크리스트 11 참고)
+add_custom_target(shaders DEPENDS ${WOT_SHADER_OUTPUTS})
+add_dependencies(main shaders)
+add_dependencies(tests shaders)

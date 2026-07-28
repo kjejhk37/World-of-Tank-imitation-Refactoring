@@ -19,4 +19,7 @@ enum class ErrorCode
     // 3000번대: 렌더러
     UnknownRendererBackend = 3001,
     RendererInitializationFailed = 3002,
+
+    // 4000번대: 엔진(Engine Update 스레드)
+    EngineWorkerStartFailed = 4001,
 };

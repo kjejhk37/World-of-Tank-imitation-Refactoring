@@ -12,7 +12,7 @@ class OpenGLRenderer final : public IRenderer
 {
 public:
     bool Initialize(HWND windowHandle, int width, int height) override;
-    void RenderFrame() override;
+    void RenderFrame(const InstanceSnapshot& snapshot) override;
     void OnResize(int width, int height) override;
     void Shutdown() override;
     bool HandleUiMessage(HWND windowHandle, UINT message, WPARAM wParam, LPARAM lParam) override;

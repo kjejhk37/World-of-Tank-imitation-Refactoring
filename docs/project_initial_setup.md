@@ -25,6 +25,9 @@ src/
   math/             # 순수 수학(Vec3/Quaternion/Matrix4x4/Transform) — 프로젝트의 다른 모듈에 무의존
   geometry/         # 도형 데이터(AABB/OBB/Sphere/Capsule/Cylinder/Mesh) + 쌍별 충돌 판정(Intersections)
   platform/         # OS/플랫폼 종속 컴포넌트 (Win32Window 등)
+  engine/           # 스레딩 정책 seam(IFrameDataPublisher/DoubleBufferPublisher) + Engine Update
+                    # producer(InstanceUpdateWorker/InstanceSnapshot) — 렌더러는 이 페이로드
+                    # 타입만 알고 동기화 방식은 모른다(DirectX_Shader_기초연결 사이클에서 도입)
   renderer/         # 렌더러 백엔드 선택/구현 (DirectX9/11/12, OpenGL)
   ui/               # UI 프레임워크(IUiManager) + 백엔드별 ImGui 구현 (DirectX9/11/12)
   persistence/       # Save/Load 시스템 (ISaveable, SaveLoadManager)
