@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "logging/Log.h"
+#include "platform/logging/Log.h"
 
 namespace
 {
@@ -35,7 +35,7 @@ TEST(LogTest, WithFilePathWritesToFileImmediately)
     std::filesystem::remove(path, ec);
 
     Log::Init(path.string());
-    Log::Error(ErrorCode::RendererInitializationFailed, "renderer init failed");
+    Log::Error(3002, "renderer init failed");
 
     const std::string content = ReadFile(path);
     EXPECT_NE(content.find("[3002]"), std::string::npos);

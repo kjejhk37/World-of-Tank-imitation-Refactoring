@@ -4,7 +4,7 @@
 #include <cmath>
 #include <limits>
 
-#include "geometry/Intersections.h"
+#include "platform/geometry/Intersections.h"
 
 // ---- Contains(AABB, point) ----
 

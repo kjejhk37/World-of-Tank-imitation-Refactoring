@@ -9,7 +9,7 @@
 하지만 그렇게 하면 도형이 6종(Sphere/AABB/OBB/Capsule/Cylinder/Mesh)일 때 쌍의 개수가 21개(6×7/2)나 되고, 알고리즘마다 이 21개를 전부 새로 구현해야 한다.
 GJK 같은 범용 알고리즘은 "이 도형에서 특정 방향으로 가장 먼 점이 어디인가"라는 질문 하나만 답할 수 있으면 도형 종류에 상관없이 동작한다 — 이 질문에 답하는 함수가 지지 함수(Support Function)다.
 
-## 핵심 타입과 함수 (`src/geometry/Geometry.h`)
+## 핵심 타입과 함수 (`src/platform/geometry/Geometry.h`)
 
 ```cpp
 using Geometry = std::variant<Sphere, AABB, OBB, Capsule, Cylinder, Mesh>;
@@ -63,5 +63,5 @@ BVH/R-Tree/Voxel/Spatial Hashing/Octree/k-d Tree/Conservative Advancement는 도
 
 ## 코드 위치
 
-- `src/geometry/Geometry.h`, `src/geometry/Geometry.cpp`
+- `src/platform/geometry/Geometry.h`, `src/platform/geometry/Geometry.cpp`
 - 테스트: `tests/GeometryTest.cpp`

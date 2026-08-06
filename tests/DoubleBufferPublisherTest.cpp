@@ -4,7 +4,7 @@
 #include <chrono>
 #include <thread>
 
-#include "engine/DoubleBufferPublisher.h"
+#include "platform/engine/DoubleBufferPublisher.h"
 
 namespace
 {

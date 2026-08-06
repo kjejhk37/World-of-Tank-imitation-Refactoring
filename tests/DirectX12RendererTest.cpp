@@ -2,12 +2,12 @@
 
 #include <vector>
 
-#include "engine/InstanceSnapshot.h"
-#include "math/Matrix4x4.h"
-#include "math/Quaternion.h"
-#include "math/Vec3.h"
+#include "graphics/renderer/InstanceSnapshot.h"
+#include "platform/math/Matrix4x4.h"
+#include "platform/math/Quaternion.h"
+#include "platform/math/Vec3.h"
 #include "platform/Win32Window.h"
-#include "renderer/directx12/DirectX12Renderer.h"
+#include "graphics/renderer/directx12/DirectX12Renderer.h"
 
 TEST(DirectX12RendererTest, InitializeSucceedsWithForcedWarp)
 {

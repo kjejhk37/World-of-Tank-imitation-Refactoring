@@ -32,7 +32,7 @@ Conservative Advancement는 그 시각을 한 번에 정확히 계산하지 않�
 
 ## 이 프로젝트에서의 구현
 
-- 파일: `src/collision/conservative_advancement/ConservativeAdvancement.h`/`.cpp`
+- 파일: `src/platform/collision/conservative_advancement/ConservativeAdvancement.h`/`.cpp`
 - 함수: `ToiResult ConservativeAdvancement(a, velocityA, b, velocityB, deltaTime)` → `{bool collided, float timeOfImpact}`
 - 반복 상한(32회)에 도달했는데도 수렴 확인이 안 되면 **충돌 없음**으로 기본값을 둔다 — "확정 못 하면 충돌 아님"이 거짓 양성보다 안전한 기본값이라는 판단(코드 리뷰에서 원래는 반대로 되어 있던 걸 수정함).
 

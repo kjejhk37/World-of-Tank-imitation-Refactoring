@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <string>
 
-#include "renderer/ShaderBytecodeLoader.h"
+#include "graphics/renderer/ShaderBytecodeLoader.h"
 
 TEST(ShaderBytecodeLoaderTest, LoadReturnsNonEmptyBytesForCompiledShader)
 {

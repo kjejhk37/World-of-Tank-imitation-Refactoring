@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "persistence/PlayerProgress.h"
-#include "persistence/SaveLoadManager.h"
-#include "serialization/IDataStore.h"
+#include "projects/persistence/PlayerProgress.h"
+#include "platform/persistence/SaveLoadManager.h"
+#include "platform/serialization/IDataStore.h"
 
 namespace
 {

@@ -2,7 +2,7 @@
 
 #include <cstdio>
 
-#include "serialization/JsonDataStore.h"
+#include "platform/serialization/JsonDataStore.h"
 
 namespace
 {

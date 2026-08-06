@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "collision/mpr/Mpr.h"
+#include "platform/collision/mpr/Mpr.h"
 
 TEST(MprTest, SeparatedSpheresDoNotIntersect)
 {

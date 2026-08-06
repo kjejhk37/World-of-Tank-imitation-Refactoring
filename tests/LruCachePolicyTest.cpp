@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "model_import/LruCachePolicy.h"
+#include "platform/model_import/LruCachePolicy.h"
 
 TEST(LruCachePolicyTest, KeepsEntryAliveWithoutExternalReference)
 {

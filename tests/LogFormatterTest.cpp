@@ -2,7 +2,7 @@
 
 #include <ctime>
 
-#include "logging/LogFormatter.h"
+#include "platform/logging/LogFormatter.h"
 
 namespace
 {

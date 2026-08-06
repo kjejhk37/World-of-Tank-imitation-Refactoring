@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/bvh/Bvh.h"
+#include "platform/collision/bvh/Bvh.h"
 
 namespace
 {

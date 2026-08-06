@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "model_import/MeshManager.h"
-#include "model_import/NaiveSignatureDeduplicator.h"
-#include "model_import/RefCountingCachePolicy.h"
+#include "platform/model_import/MeshManager.h"
+#include "platform/model_import/NaiveSignatureDeduplicator.h"
+#include "platform/model_import/RefCountingCachePolicy.h"
 
 namespace
 {

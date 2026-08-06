@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/kdtree/KdTree.h"
+#include "platform/collision/kdtree/KdTree.h"
 
 namespace
 {

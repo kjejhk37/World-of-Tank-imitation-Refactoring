@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "renderer/directx12/DirectX12ComputeDemo.h"
+#include "graphics/renderer/directx12/DirectX12ComputeDemo.h"
 
 TEST(DirectX12ComputeDemoTest, TransformDataDoublesEveryElement)
 {

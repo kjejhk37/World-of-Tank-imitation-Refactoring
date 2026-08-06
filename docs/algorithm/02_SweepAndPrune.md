@@ -37,7 +37,7 @@ i=C: j=D(10 > C.max=6) → break.
 
 ## 이 프로젝트에서의 구현
 
-- 파일: `src/collision/sweep_and_prune/SweepAndPrune.h`/`.cpp`
+- 파일: `src/platform/collision/sweep_and_prune/SweepAndPrune.h`/`.cpp`
 - 함수 하나: `FindOverlappingPairs(const std::vector<Geometry>&)` — 클래스가 아니라 **자유 함수**다.
 - BVH/R-Tree와 비교했을 때 이 부분이 SAP의 정체성이다: SAP는 "매번 새로 정렬하는 1회성 계산"이라 트리처럼 미리 지어두고 재사용할 자료구조가 없다.
 - 실제 3축 겹침 판정은 새로 만들지 않고 기존 `geometry/Intersections.h`의 `Intersects(AABB,AABB)`를 재사용한다.

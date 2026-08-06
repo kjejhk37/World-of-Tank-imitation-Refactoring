@@ -27,7 +27,7 @@ R-Tree는 "`Insert()`를 한 번에 하나씩 호출해서 점진적으로 자�
 
 ## 이 프로젝트에서의 구현
 
-- 파일: `src/collision/rtree/RTree.h`/`.cpp`
+- 파일: `src/platform/collision/rtree/RTree.h`/`.cpp`
 - `class RTree` — `RTree()`(빈 트리) 또는 `RTree(objects)`(objects를 하나씩 `Insert()`), `void Insert(const Geometry&)`, `FindOverlappingPairs()`.
 - `kMaxEntries=4`, `kMinEntries=2` 고정값 사용(동적 튜닝은 범위 밖).
 - 테스트에서 10개의 분리된 객체로 분할이 실제로 일어나는지, 분할 후에도 겹침 판정이 정확한지(6개 겹치는 객체 → C(6,2)=15쌍 전부 검출), 생성자 이후 `Insert()`로 추가한 객체의 겹침도 정상 검출되는지 확인했다.

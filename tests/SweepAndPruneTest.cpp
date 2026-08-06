@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/sweep_and_prune/SweepAndPrune.h"
+#include "platform/collision/sweep_and_prune/SweepAndPrune.h"
 
 namespace
 {

@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "entity_component/ComponentBase.h"
-#include "entity_component/Entity.h"
+#include "platform/entity_component/ComponentBase.h"
+#include "platform/entity_component/Entity.h"
 
 namespace
 {

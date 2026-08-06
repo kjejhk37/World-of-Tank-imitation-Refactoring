@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "geometry/Geometry.h"
-#include "math/Quaternion.h"
+#include "platform/geometry/Geometry.h"
+#include "platform/math/Quaternion.h"
 
 namespace
 {

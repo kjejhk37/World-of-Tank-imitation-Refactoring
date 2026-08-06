@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "model_import/HotReloadCachePolicy.h"
+#include "platform/model_import/HotReloadCachePolicy.h"
 
 namespace
 {

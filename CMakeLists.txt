@@ -65,63 +65,67 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(cgltf)
 
-add_library(app_lib STATIC
-    src/config/LaunchConfigParser.cpp
-    src/config/LaunchConfigStore.cpp
-    src/config/ConfigManager.cpp
-    src/logging/LogFormatter.cpp
-    src/logging/ConsoleLogSink.cpp
-    src/logging/FileLogSink.cpp
-    src/logging/Logger.cpp
-    src/logging/Log.cpp
+# src 계층 구조(docs/architecture/platform_graphics_projects.md)를 빌드 타겟 수준에서 강제한다 —
+# platform_lib는 어떤 상위 타겟도 링크하지 않는다(platform은 graphics/projects를 몰라야 함).
+add_library(platform_lib STATIC
+    src/platform/logging/LogFormatter.cpp
+    src/platform/logging/ConsoleLogSink.cpp
+    src/platform/logging/FileLogSink.cpp
+    src/platform/logging/Logger.cpp
+    src/platform/logging/Log.cpp
     src/platform/Win32Window.cpp
-    src/renderer/RendererFactory.cpp
-    src/renderer/RendererBackendParser.cpp
-    src/renderer/ShaderBytecodeLoader.cpp
-    src/renderer/directx9/DirectX9Renderer.cpp
-    src/renderer/directx11/DirectX11Renderer.cpp
-    src/renderer/directx11/DirectX11ComputeDemo.cpp
-    src/renderer/directx12/DirectX12Renderer.cpp
-    src/renderer/directx12/DirectX12ComputeDemo.cpp
-    src/renderer/opengl/OpenGLRenderer.cpp
-    src/serialization/DataRecordAccess.cpp
-    src/serialization/JsonDataStore.cpp
-    src/serialization/SqliteDataStore.cpp
-    src/persistence/SaveLoadManager.cpp
-    src/persistence/PlayerProgress.cpp
-    src/math/Matrix4x4.cpp
-    src/geometry/Intersections.cpp
-    src/geometry/Geometry.cpp
-    src/collision/gjk_epa/Gjk.cpp
-    src/collision/gjk_epa/Epa.cpp
-    src/collision/gjk_epa/GjkEpa.cpp
-    src/collision/sweep_and_prune/SweepAndPrune.cpp
-    src/collision/bvh/Bvh.cpp
-    src/collision/rtree/RTree.cpp
-    src/collision/voxel_grid/VoxelGrid.cpp
-    src/collision/spatial_hash/SpatialHash.cpp
-    src/collision/octree/Octree.cpp
-    src/collision/kdtree/KdTree.cpp
-    src/collision/mpr/Mpr.cpp
-    src/collision/conservative_advancement/ConservativeAdvancement.cpp
-    src/collision/fcl/Fcl.cpp
-    src/entity_component/Entity.cpp
-    src/entity_component/EntityManager.cpp
-    src/model_import/TinyObjWrapper.cpp
-    src/model_import/UfbxWrapper.cpp
-    src/model_import/CgltfWrapper.cpp
-    src/model_import/ModelLoader.cpp
-    src/model_import/RefCountingCachePolicy.cpp
-    src/model_import/LruCachePolicy.cpp
-    src/model_import/Win32FileWatcher.cpp
-    src/model_import/HotReloadCachePolicy.cpp
-    src/model_import/NaiveSignatureDeduplicator.cpp
-    src/model_import/MeshManager.cpp
-    src/engine/InstanceUpdateWorker.cpp
+    src/platform/serialization/DataRecordAccess.cpp
+    src/platform/serialization/JsonDataStore.cpp
+    src/platform/serialization/SqliteDataStore.cpp
+    src/platform/persistence/SaveLoadManager.cpp
+    src/platform/math/Matrix4x4.cpp
+    src/platform/geometry/Intersections.cpp
+    src/platform/geometry/Geometry.cpp
+    src/platform/collision/gjk_epa/Gjk.cpp
+    src/platform/collision/gjk_epa/Epa.cpp
+    src/platform/collision/gjk_epa/GjkEpa.cpp
+    src/platform/collision/sweep_and_prune/SweepAndPrune.cpp
+    src/platform/collision/bvh/Bvh.cpp
+    src/platform/collision/rtree/RTree.cpp
+    src/platform/collision/voxel_grid/VoxelGrid.cpp
+    src/platform/collision/spatial_hash/SpatialHash.cpp
+    src/platform/collision/octree/Octree.cpp
+    src/platform/collision/kdtree/KdTree.cpp
+    src/platform/collision/mpr/Mpr.cpp
+    src/platform/collision/conservative_advancement/ConservativeAdvancement.cpp
+    src/platform/collision/fcl/Fcl.cpp
+    src/platform/entity_component/Entity.cpp
+    src/platform/entity_component/EntityManager.cpp
+    src/platform/model_import/TinyObjWrapper.cpp
+    src/platform/model_import/UfbxWrapper.cpp
+    src/platform/model_import/CgltfWrapper.cpp
+    src/platform/model_import/ModelLoader.cpp
+    src/platform/model_import/RefCountingCachePolicy.cpp
+    src/platform/model_import/LruCachePolicy.cpp
+    src/platform/model_import/Win32FileWatcher.cpp
+    src/platform/model_import/HotReloadCachePolicy.cpp
+    src/platform/model_import/NaiveSignatureDeduplicator.cpp
+    src/platform/model_import/MeshManager.cpp
     ${ufbx_SOURCE_DIR}/ufbx.c
-    src/ui/directx9/ImGuiManagerDX9.cpp
-    src/ui/directx11/ImGuiManagerDX11.cpp
-    src/ui/directx12/ImGuiManagerDX12.cpp
+)
+target_include_directories(platform_lib PUBLIC src)
+target_include_directories(platform_lib PRIVATE ${ufbx_SOURCE_DIR} ${cgltf_SOURCE_DIR})
+target_link_libraries(platform_lib PRIVATE nlohmann_json::nlohmann_json tinyobjloader)
+
+# graphics_lib는 platform_lib에는 의존해도 되지만 projects(app_lib)는 몰라야 한다.
+add_library(graphics_lib STATIC
+    src/graphics/renderer/RendererFactory.cpp
+    src/graphics/renderer/RendererBackendParser.cpp
+    src/graphics/renderer/ShaderBytecodeLoader.cpp
+    src/graphics/renderer/directx9/DirectX9Renderer.cpp
+    src/graphics/renderer/directx11/DirectX11Renderer.cpp
+    src/graphics/renderer/directx11/DirectX11ComputeDemo.cpp
+    src/graphics/renderer/directx12/DirectX12Renderer.cpp
+    src/graphics/renderer/directx12/DirectX12ComputeDemo.cpp
+    src/graphics/renderer/opengl/OpenGLRenderer.cpp
+    src/graphics/ui/directx9/ImGuiManagerDX9.cpp
+    src/graphics/ui/directx11/ImGuiManagerDX11.cpp
+    src/graphics/ui/directx12/ImGuiManagerDX12.cpp
     ${imgui_SOURCE_DIR}/imgui.cpp
     ${imgui_SOURCE_DIR}/imgui_draw.cpp
     ${imgui_SOURCE_DIR}/imgui_tables.cpp
@@ -131,13 +135,23 @@ add_library(app_lib STATIC
     ${imgui_SOURCE_DIR}/backends/imgui_impl_dx11.cpp
     ${imgui_SOURCE_DIR}/backends/imgui_impl_dx12.cpp
 )
-target_include_directories(app_lib PUBLIC src)
-target_include_directories(app_lib PRIVATE ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/backends)
-target_include_directories(app_lib PRIVATE ${ufbx_SOURCE_DIR} ${cgltf_SOURCE_DIR})
-target_link_libraries(app_lib PRIVATE nlohmann_json::nlohmann_json tinyobjloader)
+target_include_directories(graphics_lib PUBLIC src)
+target_include_directories(graphics_lib PRIVATE ${imgui_SOURCE_DIR} ${imgui_SOURCE_DIR}/backends)
+target_link_libraries(graphics_lib PUBLIC platform_lib)
 
 # DirectX 9/11/12는 Windows SDK에 포함된 시스템 라이브러리라 FetchContent 대상이 아니다(googletest/nlohmann::json과 다름).
-target_link_libraries(app_lib PUBLIC d3d9.lib d3d11.lib d3d12.lib dxgi.lib)
+target_link_libraries(graphics_lib PUBLIC d3d9.lib d3d11.lib d3d12.lib dxgi.lib)
+
+# app_lib(projects)만 platform_lib/graphics_lib를 모두 의존해도 된다 — 역방향은 금지.
+add_library(app_lib STATIC
+    src/projects/config/LaunchConfigParser.cpp
+    src/projects/config/LaunchConfigStore.cpp
+    src/projects/config/ConfigManager.cpp
+    src/projects/persistence/PlayerProgress.cpp
+    src/projects/engine/InstanceUpdateWorker.cpp
+)
+target_include_directories(app_lib PUBLIC src)
+target_link_libraries(app_lib PUBLIC platform_lib graphics_lib)
 
 # --- 셰이더 빌드 파이프라인 (오프라인 컴파일, fxc.exe) ---
 # 배포 시 D3DCompiler_47.dll 의존성을 없애기 위해 HLSL을 런타임이 아닌 빌드 시점에 fxc.exe로 컴파일한다.
@@ -156,7 +170,7 @@ if(NOT FXC_EXECUTABLE)
     message(FATAL_ERROR "fxc.exe(HLSL 오프라인 셰이더 컴파일러)를 찾을 수 없습니다 - Windows SDK 설치를 확인하세요.")
 endif()
 
-# 셰이더 소스는 백엔드별 폴더(src/renderer/<backend>/shaders/<name>.hlsl)에 두고, <backend>는 그
+# 셰이더 소스는 백엔드별 폴더(src/graphics/renderer/<backend>/shaders/<name>.hlsl)에 두고, <backend>는 그
 # 경로에서 자동으로 추론한다 - "각 렌더러는 자기 폴더의 셰이더만 참조한다"는 기존 원칙과 같은 결이다.
 # 컴파일된 .cso는 실행 파일과 같은 위치(<config>/shaders/<backend>/)에 출력해, main.exe가 상대
 # 경로로 바로 로드할 수 있게 한다. WOT_SHADER_OUTPUTS는 이후 체크리스트(6/8/9)에서 각 셰이더가
@@ -195,22 +209,22 @@ function(wot_add_hlsl_shader OUT_VAR SOURCE ENTRY_POINT PROFILE)
     set(${OUT_VAR} "${_output_file}" PARENT_SCOPE)
 endfunction()
 
-add_executable(main src/app/main.cpp)
+add_executable(main src/projects/main.cpp)
 target_link_libraries(main PRIVATE app_lib)
 
 # wot_add_hlsl_shader()가 만드는 add_custom_command는 $<TARGET_FILE_DIR:main>을 참조하므로,
 # main 타겟이 add_executable로 이미 선언된 뒤에 호출해야 한다.
-wot_add_hlsl_shader(_wot_dx9_baseline_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx9/shaders/Baseline.vs.hlsl" VSMain vs_3_0)
-wot_add_hlsl_shader(_wot_dx9_baseline_ps "${CMAKE_SOURCE_DIR}/src/renderer/directx9/shaders/Baseline.ps.hlsl" PSMain ps_3_0)
-wot_add_hlsl_shader(_wot_dx11_baseline_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Baseline.vs.hlsl" VSMain vs_5_0)
-wot_add_hlsl_shader(_wot_dx11_baseline_ps "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Baseline.ps.hlsl" PSMain ps_5_0)
-wot_add_hlsl_shader(_wot_dx12_baseline_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Baseline.vs.hlsl" VSMain vs_5_0)
-wot_add_hlsl_shader(_wot_dx12_baseline_ps "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Baseline.ps.hlsl" PSMain ps_5_0)
-wot_add_hlsl_shader(_wot_dx9_instancing_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx9/shaders/Instancing.vs.hlsl" VSMain vs_3_0)
-wot_add_hlsl_shader(_wot_dx11_instancing_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Instancing.vs.hlsl" VSMain vs_5_0)
-wot_add_hlsl_shader(_wot_dx12_instancing_vs "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Instancing.vs.hlsl" VSMain vs_5_0)
-wot_add_hlsl_shader(_wot_dx11_transform_cs "${CMAKE_SOURCE_DIR}/src/renderer/directx11/shaders/Transform.cs.hlsl" CSMain cs_5_0)
-wot_add_hlsl_shader(_wot_dx12_transform_cs "${CMAKE_SOURCE_DIR}/src/renderer/directx12/shaders/Transform.cs.hlsl" CSMain cs_5_0)
+wot_add_hlsl_shader(_wot_dx9_baseline_vs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx9/shaders/Baseline.vs.hlsl" VSMain vs_3_0)
+wot_add_hlsl_shader(_wot_dx9_baseline_ps "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx9/shaders/Baseline.ps.hlsl" PSMain ps_3_0)
+wot_add_hlsl_shader(_wot_dx11_baseline_vs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx11/shaders/Baseline.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx11_baseline_ps "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx11/shaders/Baseline.ps.hlsl" PSMain ps_5_0)
+wot_add_hlsl_shader(_wot_dx12_baseline_vs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx12/shaders/Baseline.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx12_baseline_ps "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx12/shaders/Baseline.ps.hlsl" PSMain ps_5_0)
+wot_add_hlsl_shader(_wot_dx9_instancing_vs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx9/shaders/Instancing.vs.hlsl" VSMain vs_3_0)
+wot_add_hlsl_shader(_wot_dx11_instancing_vs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx11/shaders/Instancing.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx12_instancing_vs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx12/shaders/Instancing.vs.hlsl" VSMain vs_5_0)
+wot_add_hlsl_shader(_wot_dx11_transform_cs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx11/shaders/Transform.cs.hlsl" CSMain cs_5_0)
+wot_add_hlsl_shader(_wot_dx12_transform_cs "${CMAKE_SOURCE_DIR}/src/graphics/renderer/directx12/shaders/Transform.cs.hlsl" CSMain cs_5_0)
 list(APPEND WOT_SHADER_OUTPUTS
     ${_wot_dx9_baseline_vs} ${_wot_dx9_baseline_ps}
     ${_wot_dx11_baseline_vs} ${_wot_dx11_baseline_ps}
@@ -288,7 +302,7 @@ add_executable(tests
     tests/DirectX11ComputeDemoTest.cpp
     tests/DirectX12ComputeDemoTest.cpp
 )
-target_link_libraries(tests PRIVATE app_lib gtest_main)
+target_link_libraries(tests PRIVATE app_lib graphics_lib platform_lib gtest_main)
 target_compile_definitions(tests PRIVATE MODEL_IMPORT_FIXTURES_DIR="${CMAKE_SOURCE_DIR}/tests/fixtures/model_import/")
 target_compile_definitions(tests PRIVATE WOT_SHADER_OUTPUT_DIR="${CMAKE_BINARY_DIR}/$<CONFIG>/shaders/")
 

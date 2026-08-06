@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "serialization/DataRecordAccess.h"
+#include "platform/serialization/DataRecordAccess.h"
 
 TEST(DataRecordAccessTest, GetIntOrReturnsFallbackWhenFieldMissing)
 {

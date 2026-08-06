@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/voxel_grid/VoxelGrid.h"
+#include "platform/collision/voxel_grid/VoxelGrid.h"
 
 namespace
 {

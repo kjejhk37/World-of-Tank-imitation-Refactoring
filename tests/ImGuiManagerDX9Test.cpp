@@ -5,7 +5,7 @@
 #include <d3d9.h>
 
 #include "platform/Win32Window.h"
-#include "ui/directx9/ImGuiManagerDX9.h"
+#include "graphics/ui/directx9/ImGuiManagerDX9.h"
 
 namespace
 {

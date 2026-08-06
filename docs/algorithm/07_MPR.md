@@ -28,7 +28,7 @@ MPR의 포탈 정제 구조에서는 같은 방식의 보정을 시도했지만 
 
 ## 이 프로젝트에서의 구현
 
-- 파일: `src/collision/mpr/Mpr.h`/`.cpp`
+- 파일: `src/platform/collision/mpr/Mpr.h`/`.cpp`
 - 함수: `bool MprIntersects(const Geometry& a, const Geometry& b)`
 - 이름이 `Intersects`가 아니라 `MprIntersects`인 이유: `GjkEpa.h`가 이미 전역에 같은 시그니처의 `Intersects(Geometry,Geometry)`를 정의하고 있어서, 이름이 같으면 두 모듈의 `.cpp`가 같은 라이브러리(`app_lib`)에 함께 링크될 때 "이미 정의됨" 링크 오류가 난다(실제로 겪은 문제).
 

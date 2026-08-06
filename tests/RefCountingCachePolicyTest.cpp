@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "model_import/RefCountingCachePolicy.h"
+#include "platform/model_import/RefCountingCachePolicy.h"
 
 TEST(RefCountingCachePolicyTest, TryGetReturnsStoredModelWhileAlive)
 {

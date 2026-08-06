@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "math/Transform.h"
+#include "platform/math/Transform.h"
 
 TEST(TransformTest, DefaultTransformToMatrixIsIdentity)
 {

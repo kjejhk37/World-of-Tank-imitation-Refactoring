@@ -3,7 +3,7 @@
 #include <chrono>
 #include <thread>
 
-#include "engine/InstanceUpdateWorker.h"
+#include "projects/engine/InstanceUpdateWorker.h"
 
 TEST(InstanceUpdateWorkerTest, StartPopulatesSnapshotWithRequestedInstanceCount)
 {

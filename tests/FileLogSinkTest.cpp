@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 
-#include "logging/FileLogSink.h"
+#include "platform/logging/FileLogSink.h"
 
 namespace
 {

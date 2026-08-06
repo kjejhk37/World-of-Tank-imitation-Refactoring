@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "logging/ConsoleLogSink.h"
+#include "platform/logging/ConsoleLogSink.h"
 
 TEST(ConsoleLogSinkTest, InfoWritesToStdoutOnly)
 {

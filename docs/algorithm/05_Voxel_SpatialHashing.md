@@ -18,13 +18,13 @@
 - 월드 전체를 감싸는 경계(`worldBounds`)와 축당 셀 개수(`cellsPerAxis`)를 미리 정해야 한다.
 - 셀은 `std::vector<std::vector<size_t>>`로, `(x*cellsPerAxis + y)*cellsPerAxis + z` 같은 **직접 배열 인덱싱**으로 접근한다 — 해시 계산 없이 바로 주소를 계산하니 조회가 아주 빠르다.
 - `worldBounds` 밖으로 벗어난 좌표는 가장 가까운 경계 셀로 clamp한다(고정 배열이라 범위 밖 인덱스를 만들 수 없기 때문).
-- 파일: `src/collision/voxel_grid/VoxelGrid.h`/`.cpp`.
+- 파일: `src/platform/collision/voxel_grid/VoxelGrid.h`/`.cpp`.
 
 ## Spatial Hashing — 해시맵 기반, 무한 월드
 
 - 월드 경계가 필요 없다 — 좌표를 셀 크기로 나눈 정수 좌표(`floor(x/cellSize)` 등)를 키로 삼아 `std::unordered_map`에 저장한다.
 - 음수 좌표도 그대로 처리 가능(배열이 아니니 "범위 밖"이라는 개념 자체가 없음) — 이게 Voxel Grid 대비 가장 큰 실전 이점이다.
-- 파일: `src/collision/spatial_hash/SpatialHash.h`/`.cpp`.
+- 파일: `src/platform/collision/spatial_hash/SpatialHash.h`/`.cpp`.
 
 ## 비교
 

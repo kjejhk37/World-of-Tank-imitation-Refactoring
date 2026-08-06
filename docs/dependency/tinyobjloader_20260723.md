@@ -34,7 +34,7 @@ Brainstorming: [`../brainstorming/모델임포터_Mesh저장_20260723_2123.md`](
 
 CLAUDE.md 원칙("외부 라이브러리는 반드시 내부 wrapper 클래스로 감싼다")을 그대로 적용.
 
-- `tiny_obj_loader.h`에 대한 직접 참조는 `src/model_import/TinyObjWrapper.cpp` 단 한 곳에만 존재한다.
+- `tiny_obj_loader.h`에 대한 직접 참조는 `src/platform/model_import/TinyObjWrapper.cpp` 단 한 곳에만 존재한다.
 - `TinyObjWrapper.h`는 `tinyobj::` 네임스페이스의 어떤 타입도 노출하지 않고, 프로젝트 공용 타입인 `Mesh`만 공개 인터페이스에 사용한다.
 - `ModelLoader::LoadOBJ`(상위 모듈)는 `TinyObjWrapper`만 알고, tinyobjloader의 존재 자체를 모른다.
 

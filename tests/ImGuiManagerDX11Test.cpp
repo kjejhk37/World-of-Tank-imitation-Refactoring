@@ -5,7 +5,7 @@
 #include <d3d11.h>
 
 #include "platform/Win32Window.h"
-#include "ui/directx11/ImGuiManagerDX11.h"
+#include "graphics/ui/directx11/ImGuiManagerDX11.h"
 
 namespace
 {

@@ -23,7 +23,7 @@ MinkowskiSupport(A, B, direction) = Support(A, direction) - Support(B, -directio
 4. 매 반복 "새로 구한 점이 탐색 방향을 지나치지 못하면"(내적이 음수) 분리축을 찾은 것이므로 **충돌 아님**으로 즉시 종료한다.
 5. `simplex`가 사면체 4개 점이 되고 원점을 감싸는 것이 확인되면 **충돌**로 판정, 그 사면체를 EPA에 넘긴다.
 
-이 프로젝트에서는 심플렉스가 2/3/4개 점일 때 각각 "선(Line)/삼각형(Triangle)/사면체(Tetrahedron) 케이스"로 나눠 처리한다(`src/collision/gjk_epa/Gjk.cpp`의 `LineCase`/`TriangleCase`/`TetrahedronCase`).
+이 프로젝트에서는 심플렉스가 2/3/4개 점일 때 각각 "선(Line)/삼각형(Triangle)/사면체(Tetrahedron) 케이스"로 나눠 처리한다(`src/platform/collision/gjk_epa/Gjk.cpp`의 `LineCase`/`TriangleCase`/`TetrahedronCase`).
 
 ## EPA가 푸는 문제
 

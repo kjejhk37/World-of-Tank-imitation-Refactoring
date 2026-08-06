@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/rtree/RTree.h"
+#include "platform/collision/rtree/RTree.h"
 
 namespace
 {

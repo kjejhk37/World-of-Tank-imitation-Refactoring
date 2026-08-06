@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "entity_component/EntityManager.h"
+#include "platform/entity_component/EntityManager.h"
 
 TEST(EntityManagerTest, CreateEntityReturnsRetrievableEntity)
 {

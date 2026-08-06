@@ -5,7 +5,7 @@
 #include <utility>
 #include <vector>
 
-#include "logging/Logger.h"
+#include "platform/logging/Logger.h"
 
 namespace
 {
@@ -63,7 +63,7 @@ TEST(LoggerTest, ErrorEmbedsErrorCodeInMessage)
     sinks.push_back(std::make_unique<FakeLogSink>(calls));
     Logger logger(std::move(sinks));
 
-    logger.Error(ErrorCode::WindowCreationFailed, "failed to create window");
+    logger.Error(2001, "failed to create window");
 
     ASSERT_EQ(calls.size(), 1u);
     EXPECT_EQ(calls[0].first, LogLevel::Error);

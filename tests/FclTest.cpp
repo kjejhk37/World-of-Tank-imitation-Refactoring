@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/fcl/Fcl.h"
+#include "platform/collision/fcl/Fcl.h"
 
 namespace
 {

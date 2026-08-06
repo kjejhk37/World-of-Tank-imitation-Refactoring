@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-#include "serialization/SqliteDataStore.h"
+#include "platform/serialization/SqliteDataStore.h"
 
 TEST(SqliteDataStoreTest, SaveThrowsNotImplemented)
 {

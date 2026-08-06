@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "geometry/OBB.h"
+#include "platform/geometry/OBB.h"
 
 TEST(OBBTest, DefaultOrientationAxesAreWorldAxes)
 {

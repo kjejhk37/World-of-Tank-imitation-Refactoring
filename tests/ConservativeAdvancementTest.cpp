@@ -2,7 +2,7 @@
 
 #include <cmath>
 
-#include "collision/conservative_advancement/ConservativeAdvancement.h"
+#include "platform/collision/conservative_advancement/ConservativeAdvancement.h"
 
 TEST(ConservativeAdvancementTest, HeadOnApproachMatchesAnalyticTimeOfImpact)
 {

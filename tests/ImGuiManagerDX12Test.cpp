@@ -6,7 +6,7 @@
 #include <dxgi1_4.h>
 
 #include "platform/Win32Window.h"
-#include "ui/directx12/ImGuiManagerDX12.h"
+#include "graphics/ui/directx12/ImGuiManagerDX12.h"
 
 namespace
 {

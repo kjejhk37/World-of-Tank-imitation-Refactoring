@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "math/Quaternion.h"
-#include "model_import/NaiveSignatureDeduplicator.h"
+#include "platform/math/Quaternion.h"
+#include "platform/model_import/NaiveSignatureDeduplicator.h"
 
 namespace
 {

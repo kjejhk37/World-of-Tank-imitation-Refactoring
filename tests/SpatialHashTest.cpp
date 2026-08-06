@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/spatial_hash/SpatialHash.h"
+#include "platform/collision/spatial_hash/SpatialHash.h"
 
 namespace
 {

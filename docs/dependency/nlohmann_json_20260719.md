@@ -36,7 +36,7 @@ Brainstorming: [`../brainstorming/설정_저장로드_시스템_20260719_1221.md
 
 CLAUDE.md 원칙("외부 라이브러리는 반드시 내부 wrapper 클래스로 감싼다")을 그대로 적용.
 
-- `nlohmann::json`에 대한 직접 참조(`#include <nlohmann/json.hpp>`)는 `src/serialization/JsonDataStore.cpp` 단 한 곳에만 존재한다.
+- `nlohmann::json`에 대한 직접 참조(`#include <nlohmann/json.hpp>`)는 `src/platform/serialization/JsonDataStore.cpp` 단 한 곳에만 존재한다.
 - `JsonDataStore.h`는 `nlohmann::json`을 전혀 노출하지 않고, 프로젝트 공용 타입인 `DataRecord`(`std::unordered_map<std::string, std::string>`)만 공개 인터페이스에 사용한다.
 - `ConfigManager`, `SaveLoadManager` 등 상위 모듈은 `IDataStore` 인터페이스만 알고, `nlohmann::json`의 존재 자체를 모른다.
 

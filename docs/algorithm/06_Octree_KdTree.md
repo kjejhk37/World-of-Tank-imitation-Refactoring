@@ -15,7 +15,7 @@ Octree는 대신 **밀도에 따라 재귀적으로 8분할**한다 — 객체�
 
 **쿼리**: 각 노드에서 (a) 그 노드 자신에 저장된 객체끼리, (b) 그 노드의 객체 대 모든 자손, (c) 각 자식으로 재귀 — 이 세 경우가 정확히 한 번씩만 겹쳐 누락/중복이 없다.
 
-- 파일: `src/collision/octree/Octree.h`/`.cpp`
+- 파일: `src/platform/collision/octree/Octree.h`/`.cpp`
 - 단순화: 이미 저장된 객체는 나중에 노드가 분할돼도 재분배하지 않는다(정확성에는 영향 없음, 트리 품질에만 영향).
 
 ## k-d Tree — BVH의 "축 순환" 버전
@@ -25,7 +25,7 @@ Octree는 대신 **밀도에 따라 재귀적으로 8분할**한다 — 객체�
 
 이 하나의 차이가 k-d Tree라는 이름의 유래이자 정체성이다("k-dimensional tree" — k개 차원을 돌아가며 분할).
 
-- 파일: `src/collision/kdtree/KdTree.h`/`.cpp`
+- 파일: `src/platform/collision/kdtree/KdTree.h`/`.cpp`
 - BVH 코드를 `#include`하지 않고 완전히 독립적으로 다시 작성(요구사항: 모든 알고리즘은 서로 독립).
 
 ## 언제 쓰는가

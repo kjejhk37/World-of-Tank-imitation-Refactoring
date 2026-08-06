@@ -5,7 +5,7 @@
 #include <fstream>
 #include <thread>
 
-#include "model_import/Win32FileWatcher.h"
+#include "platform/model_import/Win32FileWatcher.h"
 
 namespace
 {

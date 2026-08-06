@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "math/Quaternion.h"
+#include "platform/math/Quaternion.h"
 
 TEST(QuaternionTest, IdentityDoesNotChangeVector)
 {

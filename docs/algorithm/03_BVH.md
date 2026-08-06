@@ -42,7 +42,7 @@ SelfCollide(node):
 
 ## 이 프로젝트에서의 구현
 
-- 파일: `src/collision/bvh/Bvh.h`/`.cpp`
+- 파일: `src/platform/collision/bvh/Bvh.h`/`.cpp`
 - `class Bvh` — 생성자에서 트리를 빌드하고, `FindOverlappingPairs()`로 쿼리(SAP과 반환 타입이 동일해 비교하기 쉽게 맞춤).
 - 리프-리프 최종 확인은 기존 `Intersects(AABB,AABB)` 재사용.
 

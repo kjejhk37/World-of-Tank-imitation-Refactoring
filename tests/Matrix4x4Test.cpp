@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "math/Matrix4x4.h"
+#include "platform/math/Matrix4x4.h"
 
 TEST(Matrix4x4Test, IdentityTransformPointIsUnchanged)
 {

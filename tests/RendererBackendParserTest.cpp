@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "renderer/RendererBackendParser.h"
+#include "graphics/renderer/RendererBackendParser.h"
 
 TEST(RendererBackendParserTest, ParsesKnownValues)
 {

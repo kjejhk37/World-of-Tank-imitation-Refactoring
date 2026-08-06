@@ -2,7 +2,7 @@
 
 #include <algorithm>
 
-#include "collision/octree/Octree.h"
+#include "platform/collision/octree/Octree.h"
 
 namespace
 {

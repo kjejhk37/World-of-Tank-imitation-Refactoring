@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "config/LaunchConfigStore.h"
+#include "projects/config/LaunchConfigStore.h"
 
 TEST(LaunchConfigStoreTest, GetReturnsWhatWasInitialized)
 {

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "persistence/PlayerProgress.h"
+#include "projects/persistence/PlayerProgress.h"
 
 TEST(PlayerProgressTest, FromRecordKeepsExistingCurrencyOnMalformedValue)
 {

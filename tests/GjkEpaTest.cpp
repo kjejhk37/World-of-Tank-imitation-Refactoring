@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "collision/gjk_epa/GjkEpa.h"
+#include "platform/collision/gjk_epa/GjkEpa.h"
 
 // ---- Sphere-Sphere (해석적 깊이 검증) ----
 

@@ -2,7 +2,7 @@
 
 #include <stdexcept>
 
-#include "config/LaunchConfigParser.h"
+#include "projects/config/LaunchConfigParser.h"
 
 TEST(LaunchConfigParserTest, ParsesDirectX11Flag)
 {

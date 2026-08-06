@@ -4,7 +4,7 @@
 
 namespace
 {
-    constexpr const wchar_t* kWindowClassName = L"WorldOfTankImitationWindowClass";
+    constexpr const wchar_t* kWindowClassName = L"PlatformWin32WindowClass";
 
     std::wstring ToWideString(const std::string& text)
     {

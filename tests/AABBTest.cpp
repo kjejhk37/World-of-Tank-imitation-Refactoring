@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "geometry/AABB.h"
+#include "platform/geometry/AABB.h"
 
 TEST(AABBTest, CenterIsMidpointOfMinAndMax)
 {

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "model_import/ModelLoader.h"
+#include "platform/model_import/ModelLoader.h"
 
 namespace
 {

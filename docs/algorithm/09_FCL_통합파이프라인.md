@@ -34,7 +34,7 @@ GJK+EPA(narrow-phase)가 이걸 최종적으로 "실제로는 안 닿았다"고 
 
 ## 이 프로젝트에서의 구현
 
-- 파일: `src/collision/fcl/Fcl.h`/`.cpp`
+- 파일: `src/platform/collision/fcl/Fcl.h`/`.cpp`
 - `struct CollisionPair { size_t indexA; size_t indexB; PenetrationInfo penetration; };`
 - 테스트에서 "AABB는 겹치지만 실제 구는 안 닿는 쌍이 최종 결과에서 제외되는지"를 직접 검증했다(`tests/FclTest.cpp`).
 
