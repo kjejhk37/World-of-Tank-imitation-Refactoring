@@ -1,3 +1,9 @@
 [submodule "agent_harness"]
 	path = agent_harness
 	url = https://github.com/kjejhk37/agent_harness.git
+[submodule "src/graphics"]
+	path = src/graphics
+	url = https://github.com/kjejhk37/graphics.git
+[submodule "src/platform"]
+	path = src/platform
+	url = https://github.com/kjejhk37/platform.git
