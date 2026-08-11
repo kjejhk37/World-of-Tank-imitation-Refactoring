@@ -149,6 +149,10 @@ add_library(app_lib STATIC
     src/projects/config/ConfigManager.cpp
     src/projects/persistence/PlayerProgress.cpp
     src/projects/engine/InstanceUpdateWorker.cpp
+    src/projects/game/SceneManager.cpp
+    src/projects/game/PrototypeScene.cpp
+    src/projects/game/GameManager.cpp
+    src/projects/game/SceneSnapshotBuilder.cpp
 )
 target_include_directories(app_lib PUBLIC src)
 target_link_libraries(app_lib PUBLIC platform_lib graphics_lib)
@@ -298,6 +302,10 @@ add_executable(tests
     tests/MeshManagerTest.cpp
     tests/DoubleBufferPublisherTest.cpp
     tests/InstanceUpdateWorkerTest.cpp
+    tests/SceneManagerTest.cpp
+    tests/PrototypeSceneTest.cpp
+    tests/GameManagerTest.cpp
+    tests/SceneSnapshotBuilderTest.cpp
     tests/ShaderBytecodeLoaderTest.cpp
     tests/DirectX11ComputeDemoTest.cpp
     tests/DirectX12ComputeDemoTest.cpp
