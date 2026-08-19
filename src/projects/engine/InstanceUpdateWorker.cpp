@@ -10,7 +10,7 @@ namespace
     constexpr int kTickIntervalMilliseconds = 16;
 }
 
-InstanceUpdateWorker::InstanceUpdateWorker(std::size_t instanceCount) : m_instanceCount(instanceCount)
+InstanceUpdateWorker::InstanceUpdateWorker()
 {
 }
 
@@ -55,7 +55,7 @@ void InstanceUpdateWorker::Run()
 {
     using Clock = std::chrono::steady_clock;
 
-    GameManager gameManager(m_instanceCount);
+    GameManager gameManager;
     Clock::time_point lastTick = Clock::now();
 
     while (!m_stopRequested.load(std::memory_order_relaxed))

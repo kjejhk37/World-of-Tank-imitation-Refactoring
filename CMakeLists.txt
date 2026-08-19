@@ -117,6 +117,7 @@ add_library(graphics_lib STATIC
     src/graphics/renderer/RendererFactory.cpp
     src/graphics/renderer/RendererBackendParser.cpp
     src/graphics/renderer/ShaderBytecodeLoader.cpp
+    src/graphics/renderer/WicImageLoader.cpp
     src/graphics/renderer/directx9/DirectX9Renderer.cpp
     src/graphics/renderer/directx11/DirectX11Renderer.cpp
     src/graphics/renderer/directx11/DirectX11ComputeDemo.cpp
@@ -126,6 +127,12 @@ add_library(graphics_lib STATIC
     src/graphics/ui/directx9/ImGuiManagerDX9.cpp
     src/graphics/ui/directx11/ImGuiManagerDX11.cpp
     src/graphics/ui/directx12/ImGuiManagerDX12.cpp
+    src/graphics/ui/widgets/UiElementRegistry.cpp
+    src/graphics/ui/widgets/ButtonUI.cpp
+    src/graphics/ui/widgets/ProgressUI.cpp
+    src/graphics/ui/widgets/StringFieldUI.cpp
+    src/graphics/ui/widgets/LabelUI.cpp
+    src/graphics/ui/widgets/ImageUI.cpp
     ${imgui_SOURCE_DIR}/imgui.cpp
     ${imgui_SOURCE_DIR}/imgui_draw.cpp
     ${imgui_SOURCE_DIR}/imgui_tables.cpp
@@ -140,7 +147,7 @@ target_include_directories(graphics_lib PRIVATE ${imgui_SOURCE_DIR} ${imgui_SOUR
 target_link_libraries(graphics_lib PUBLIC platform_lib)
 
 # DirectX 9/11/12는 Windows SDK에 포함된 시스템 라이브러리라 FetchContent 대상이 아니다(googletest/nlohmann::json과 다름).
-target_link_libraries(graphics_lib PUBLIC d3d9.lib d3d11.lib d3d12.lib dxgi.lib)
+target_link_libraries(graphics_lib PUBLIC d3d9.lib d3d11.lib d3d12.lib dxgi.lib windowscodecs.lib)
 
 # app_lib(projects)만 platform_lib/graphics_lib를 모두 의존해도 된다 — 역방향은 금지.
 add_library(app_lib STATIC
@@ -150,7 +157,7 @@ add_library(app_lib STATIC
     src/projects/persistence/PlayerProgress.cpp
     src/projects/engine/InstanceUpdateWorker.cpp
     src/projects/game/SceneManager.cpp
-    src/projects/game/PrototypeScene.cpp
+    src/projects/game/IntroScene.cpp
     src/projects/game/GameManager.cpp
     src/projects/game/SceneSnapshotBuilder.cpp
 )
@@ -303,7 +310,7 @@ add_executable(tests
     tests/DoubleBufferPublisherTest.cpp
     tests/InstanceUpdateWorkerTest.cpp
     tests/SceneManagerTest.cpp
-    tests/PrototypeSceneTest.cpp
+    tests/IntroSceneTest.cpp
     tests/GameManagerTest.cpp
     tests/SceneSnapshotBuilderTest.cpp
     tests/ShaderBytecodeLoaderTest.cpp
@@ -339,6 +346,18 @@ add_custom_command(TARGET tests POST_BUILD
         "${CMAKE_SOURCE_DIR}/tests/fixtures/model_import/cube.obj"
         "$<TARGET_FILE_DIR:tests>/assets/models/cube.obj"
     COMMENT "Copying cube.obj next to tests.exe"
+)
+
+# IntroScene의 ImageUI가 renderer->LoadTexture("assets/textures/intro_logo.png")로 상대 경로로
+# 읽을 수 있게 실행 파일 옆에 복사해 둔다 - cube.obj와 동일한 패턴. intro_logo.png는 임시 placeholder
+# (graphics 저장소의 WicImageLoaderTest 픽스처를 그대로 복사한 4x4 테스트용 이미지)이며, 실제 로고
+# 에셋이 정해지면 이 파일을 교체하면 된다.
+add_custom_command(TARGET main POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "$<TARGET_FILE_DIR:main>/assets/textures"
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        "${CMAKE_SOURCE_DIR}/tests/fixtures/textures/intro_logo.png"
+        "$<TARGET_FILE_DIR:main>/assets/textures/intro_logo.png"
+    COMMENT "Copying intro_logo.png next to main.exe"
 )
 
 # 이 시점까지 등록된 모든 wot_add_hlsl_shader() 호출(체크리스트 6/8/9)의 .cso 출력을 하나의

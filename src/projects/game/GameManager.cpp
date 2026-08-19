@@ -2,17 +2,17 @@
 
 #include <memory>
 
-#include "projects/game/PrototypeScene.h"
+#include "projects/game/IntroScene.h"
 
 namespace
 {
-    constexpr const char* kPrototypeSceneKey = "Prototype";
+    constexpr const char* kIntroSceneKey = "Intro";
 }
 
-GameManager::GameManager(std::size_t instanceCount)
+GameManager::GameManager()
 {
-    m_sceneManager.Create(kPrototypeSceneKey, std::make_unique<PrototypeScene>(instanceCount));
-    m_sceneManager.Add(kPrototypeSceneKey);
+    m_sceneManager.Create(kIntroSceneKey, std::make_unique<IntroScene>());
+    m_sceneManager.Add(kIntroSceneKey);
 }
 
 void GameManager::Update(float deltaTime)

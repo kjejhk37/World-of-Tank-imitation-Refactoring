@@ -5,25 +5,9 @@
 
 #include "projects/engine/InstanceUpdateWorker.h"
 
-TEST(InstanceUpdateWorkerTest, StartPopulatesSnapshotWithRequestedInstanceCount)
-{
-    constexpr std::size_t kInstanceCount = 4;
-    InstanceUpdateWorker worker(kInstanceCount);
-
-    EXPECT_TRUE(worker.GetPublisher().AcquireReadSnapshot().worldMatrices.empty());
-
-    worker.Start();
-    std::this_thread::sleep_for(std::chrono::milliseconds(100));
-
-    const InstanceSnapshot& snapshot = worker.GetPublisher().AcquireReadSnapshot();
-    EXPECT_EQ(snapshot.worldMatrices.size(), kInstanceCount);
-
-    worker.Stop();
-}
-
 TEST(InstanceUpdateWorkerTest, StopReturnsWithoutHangingOrCrashing)
 {
-    InstanceUpdateWorker worker(4);
+    InstanceUpdateWorker worker;
 
     worker.Start();
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
@@ -35,30 +19,16 @@ TEST(InstanceUpdateWorkerTest, StopReturnsWithoutHangingOrCrashing)
     SUCCEED();
 }
 
-TEST(InstanceUpdateWorkerTest, SnapshotKeepsChangingOverTime)
+TEST(InstanceUpdateWorkerTest, PublishesSnapshotWithoutCrashingWhenSceneHasNoEntities)
 {
-    InstanceUpdateWorker worker(4);
+    InstanceUpdateWorker worker;
+
+    EXPECT_TRUE(worker.GetPublisher().AcquireReadSnapshot().worldMatrices.empty());
+
     worker.Start();
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
-    const Matrix4x4 first = worker.GetPublisher().AcquireReadSnapshot().worldMatrices.at(0);
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(200));
-    const Matrix4x4 second = worker.GetPublisher().AcquireReadSnapshot().worldMatrices.at(0);
+    EXPECT_TRUE(worker.GetPublisher().AcquireReadSnapshot().worldMatrices.empty());
 
     worker.Stop();
-
-    bool anyComponentDiffers = false;
-    for (int row = 0; row < 4 && !anyComponentDiffers; ++row)
-    {
-        for (int col = 0; col < 4; ++col)
-        {
-            if (first.m[row][col] != second.m[row][col])
-            {
-                anyComponentDiffers = true;
-                break;
-            }
-        }
-    }
-    EXPECT_TRUE(anyComponentDiffers);
 }
