@@ -1,0 +1,366 @@
+original_path,new_path,format,loadable_now,size_bytes,notes
+Sound/Battle.mp3,audio/bgm/battle.mp3,mp3,불가,3344006,
+Sound/Dead.mp3,audio/bgm/dead.mp3,mp3,불가,1754926,
+Sound/Loading.mp3,audio/bgm/loading.mp3,mp3,불가,1209489,
+Sound/Select.mp3,audio/bgm/select.mp3,mp3,불가,1049828,
+Sound/Title.mp3,audio/bgm/title.mp3,mp3,불가,957877,
+Sound/Victory.mp3,audio/bgm/victory.mp3,mp3,불가,1235820,
+Sound/Easteregg/Dead.wav,audio/easter_egg/dead_01.wav,wav,불가,96912,
+Sound/Easteregg/Dead2.wav,audio/easter_egg/dead_02.wav,wav,불가,58542,
+Sound/Easteregg/Dead3.wav,audio/easter_egg/dead_03.wav,wav,불가,19504,
+Sound/Boom_0.ogg,audio/sfx/boom_00.ogg,ogg,불가,159149,
+Sound/Boom_1.wav,audio/sfx/boom_01.wav,wav,불가,513680,
+Sound/Boom_2.ogg,audio/sfx/boom_02.ogg,ogg,불가,141678,
+Sound/Burn.mp3,audio/sfx/burn.mp3,mp3,불가,737048,
+Sound/Bush.wav,audio/sfx/bush.wav,wav,불가,407158,
+Sound/DeadTankBoom.wav,audio/sfx/dead_tank_boom.wav,wav,불가,250028,
+Sound/Fance.wav,audio/sfx/fence.wav,wav,불가,720772,원본 파일명 오타(Fance) 수정
+Sound/Move_0.wav,audio/sfx/move_00.wav,wav,불가,4618604,
+Sound/Move_1.wav,audio/sfx/move_01.wav,wav,불가,189378,
+Sound/Rock_Fance.wav,audio/sfx/rock_fence.wav,wav,불가,882800,원본 파일명 오타(Fance) 수정
+Sound/Shot_1.flac,audio/sfx/shot_01.flac,flac,불가,271387,
+Sound/Shot_2.flac,audio/sfx/shot_02.flac,flac,불가,182091,
+Sound/Shot_3.flac,audio/sfx/shot_03.flac,flac,불가,126551,
+Sound/TreeFall_0.wav,audio/sfx/tree_fall.wav,wav,불가,693392,
+Sound/System/AITankFound.ogg,audio/voice/ai_tank_found.ogg,ogg,불가,103000,
+Sound/System/Defeat.ogg,audio/voice/defeat.ogg,ogg,불가,18121,
+Sound/Good_0.ogg,audio/voice/good_00.ogg,ogg,불가,12415,
+Sound/Good_1.ogg,audio/voice/good_01.ogg,ogg,불가,11577,
+Sound/Good_2.ogg,audio/voice/good_02.ogg,ogg,불가,15382,
+Sound/Good_3.ogg,audio/voice/good_03.ogg,ogg,불가,12726,
+Sound/System/Start.ogg,audio/voice/start.ogg,ogg,불가,63084,
+Sound/System/Win.ogg,audio/voice/win.ogg,ogg,불가,18984,
+TextData/Tables/MapLimitTable.csv,data/maps/map_limit.csv,csv,불가,1942,
+TextData/Tables/GraphDataTable.csv,data/misc/graph_data.csv,csv,불가,247,
+TextData/Tables/Bush01Table.csv,data/placement/battle/bush_01.csv,csv,불가,1002,
+TextData/Tables/Fence01Table.csv,data/placement/battle/fence_01.csv,csv,불가,673,
+TextData/Tables/Fence02Table.csv,data/placement/battle/fence_02.csv,csv,불가,713,
+TextData/Tables/House01Table.csv,data/placement/battle/house_01.csv,csv,불가,262,
+TextData/Tables/House02Table.csv,data/placement/battle/house_02.csv,csv,불가,309,
+TextData/Tables/House03Table.csv,data/placement/battle/house_03.csv,csv,불가,261,
+TextData/Tables/ObjectTable.csv,data/placement/battle/objects.csv,csv,불가,322,
+TextData/Tables/Tree01Table.csv,data/placement/battle/tree_01.csv,csv,불가,2141,
+TextData/Tables/Tree02Table.csv,data/placement/battle/tree_02.csv,csv,불가,991,
+TextData/Tables/SelectScene_Bush01Table.csv,data/placement/select/bush_01.csv,csv,불가,342,
+TextData/Tables/SelectScene_Fence01Table.csv,data/placement/select/fence_01.csv,csv,불가,253,
+TextData/Tables/SelectScene_Fence02Table.csv,data/placement/select/fence_02.csv,csv,불가,210,
+TextData/Tables/SelectScene_House01Table.csv,data/placement/select/house_01.csv,csv,불가,210,
+TextData/Tables/SelectScene_House02Table.csv,data/placement/select/house_02.csv,csv,불가,209,
+TextData/Tables/SelectScene_House03Table.csv,data/placement/select/house_03.csv,csv,불가,207,
+TextData/Tables/SelectScene_ObjectTable.csv,data/placement/select/objects.csv,csv,불가,318,
+TextData/Tables/SelectScene_Tree01Table.csv,data/placement/select/tree_01.csv,csv,불가,517,
+TextData/Tables/SelectScene_Tree02Table.csv,data/placement/select/tree_02.csv,csv,불가,425,
+TextData/Tables/TankModelValueTable.csv,data/tanks/tank_model_value.csv,csv,불가,910,
+TextData/Tables/TankTable.csv,data/tanks/tank_table.csv,csv,불가,251,
+TextData/Transforms/bullet1.srt,data/transforms/bullet_01.srt,srt,불가,48,
+TextData/Transforms/bullet2.srt,data/transforms/bullet_02.srt,srt,불가,48,
+TextData/Transforms/MainCamera.srt,data/transforms/main_camera.srt,srt,불가,48,
+TextData/Transforms/Quad.srt,data/transforms/quad.srt,srt,불가,48,
+TextData/Transforms/Sphere.srt,data/transforms/sphere.srt,srt,불가,48,
+TextData/Transforms/Tank01_Gun.srt,data/transforms/tank_01_gun.srt,srt,불가,48,
+TextData/Transforms/Tank01_Turret.srt,data/transforms/tank_01_turret.srt,srt,불가,48,
+TextData/Transforms/Tank02_Gun.srt,data/transforms/tank_02_gun.srt,srt,불가,48,
+TextData/Transforms/Tank02_Turret.srt,data/transforms/tank_02_turret.srt,srt,불가,48,
+TextData/Transforms/Tank03_Gun.srt,data/transforms/tank_03_gun.srt,srt,불가,48,
+TextData/Transforms/Tank03_Turret.srt,data/transforms/tank_03_turret.srt,srt,불가,48,
+TextData/Transforms/Tank04_Gun.srt,data/transforms/tank_04_gun.srt,srt,불가,48,
+TextData/Transforms/Tank04_Turret.srt,data/transforms/tank_04_turret.srt,srt,불가,48,
+Textures/WOT_FX/Accel.png,effects/fx/accel.png,png,가능,233920,
+Textures/WOT_FX/ALL_FX.png,effects/fx/all_fx.png,png,가능,3861782,
+Textures/WOT_FX/Aurora.png,effects/fx/aurora.png,png,가능,4564,
+Textures/WOT_FX/AuroraW.png,effects/fx/aurora_w.png,png,가능,4220,
+Textures/WOT_FX/Breath.png,effects/fx/breath.png,png,가능,106398,
+Textures/WOT_FX/Dirt.png,effects/fx/dirt.png,png,가능,1898430,
+Textures/WOT_FX/Dust.png,effects/fx/dust.png,png,가능,244910,
+Textures/WOT_FX/Fire.png,effects/fx/fire_01.png,png,가능,127627,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/WOT_FX/Fire2.png,effects/fx/fire_02.png,png,가능,1047366,
+Textures/WOT_FX/Firing.png,effects/fx/firing.png,png,가능,277894,
+Textures/WOT_FX/Firing_Dust.png,effects/fx/firing_dust.png,png,가능,169808,
+Textures/WOT_FX/Hit.png,effects/fx/hit.png,png,가능,21765,
+Textures/WOT_FX/Hit_Dust.png,effects/fx/hit_dust.png,png,가능,196415,
+Textures/WOT_FX/Tracer.png,effects/fx/tracer.png,png,가능,85741,
+Textures/WOT_FX/winter.png,effects/fx/winter.png,png,가능,672124,
+Textures/Trail/trail0_DM.png,effects/trail/trail_00_diffuse.png,png,가능,141069,
+Textures/Trail/trail1_DM.png,effects/trail/trail_01_diffuse.png,png,가능,136163,
+Textures/Trail/trail2_DM.png,effects/trail/trail_02_diffuse.png,png,가능,133383,
+Textures/Trail/trail3_DM.png,effects/trail/trail_03_diffuse.png,png,가능,159788,
+Textures/Landscape/skyBox.dds,environment/sky_box.dds,dds,미확인,33554552,
+Textures/Landscape/Snow_ENV.dds,environment/snow_env.dds,dds,미확인,2097440,
+Models/Materials/Bush01/Bush01.mats,models/materials/props/bush_01/bush_01.mats,mats,불가,44,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Bush01/gbushy.mat,models/materials/props/bush_01/gbushy.mat,mat,불가,338,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Bush01/lambert1.mat,models/materials/props/bush_01/lambert_01.mat,mat,불가,340,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Fence01/Fence01.mats,models/materials/props/fence_01/fence_01.mats,mats,불가,48,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Fence01/WoodenFence.mat,models/materials/props/fence_01/wooden_fence.mat,mat,불가,359,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Fence02/EmptyFence.mat,models/materials/props/fence_02/empty_fence.mat,mat,불가,358,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Fence02/Fence02.mats,models/materials/props/fence_02/fence_02.mats,mats,불가,47,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/garage/garage.mats,models/materials/props/garage/garage.mats,mats,불가,149,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/garage/Gate.mat,models/materials/props/garage/gate.mat,mat,불가,340,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/garage/Metal.mat,models/materials/props/garage/metal.mat,mat,불가,345,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/garage/roof.mat,models/materials/props/garage/roof.mat,mat,불가,340,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/garage/wall.mat,models/materials/props/garage/wall.mat,mat,불가,340,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Garage_Gate/Garage_Gate.mats,models/materials/props/garage_gate/garage_gate.mats,mats,불가,45,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Garage_Gate/Gate.mat,models/materials/props/garage_gate/gate.mat,mat,불가,340,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/brick_walls_sides.mat,models/materials/props/house_01/brick_walls_sides.mat,mat,불가,329,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/flower_walls.mat,models/materials/props/house_01/flower_walls.mat,mat,불가,88,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/flowers_door.mat,models/materials/props/house_01/flowers_door.mat,mat,불가,314,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/flowers_roof.mat,models/materials/props/house_01/flowers_roof.mat,mat,불가,88,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/flowers_trims.mat,models/materials/props/house_01/flowers_trims.mat,mat,불가,89,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/flowers_windows.mat,models/materials/props/house_01/flowers_windows.mat,mat,불가,323,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/House01.mats,models/materials/props/house_01/house_01.mats,mats,불가,901,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/House01/marche_attic_floors.mat,models/materials/props/house_01/marche_attic_floors.mat,mat,불가,95,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/marche_attic_walls.mat,models/materials/props/house_01/marche_attic_walls.mat,mat,불가,94,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_door_glass.mat,models/materials/props/house_01/marche_door_glass.mat,mat,불가,319,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_First_Floor.mat,models/materials/props/house_01/marche_first_floor.mat,mat,불가,94,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_First_Floor_Unique.mat,models/materials/props/house_01/marche_first_floor_unique.mat,mat,불가,101,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_Opacity.mat,models/materials/props/house_01/marche_opacity.mat,mat,불가,310,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_Other_Floors.mat,models/materials/props/house_01/marche_other_floors.mat,mat,불가,95,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_Roof.mat,models/materials/props/house_01/marche_roof.mat,mat,불가,87,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_Tiling.mat,models/materials/props/house_01/marche_tiling.mat,mat,불가,313,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_Unique_Windows.mat,models/materials/props/house_01/marche_unique_windows.mat,mat,불가,337,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/Marche_Windowframes.001.mat,models/materials/props/house_01/marche_windowframes.mat,mat,불가,321,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/plank_floors.mat,models/materials/props/house_01/plank_floors.mat,mat,불가,318,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/plaster_walls_short.mat,models/materials/props/house_01/plaster_walls_short.mat,mat,불가,335,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/plaster_walls_tall.mat,models/materials/props/house_01/plaster_walls_tall.mat,mat,불가,332,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/roof_short.mat,models/materials/props/house_01/roof_short.mat,mat,불가,310,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/roof_tall.mat,models/materials/props/house_01/roof_tall.mat,mat,불가,307,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/trims_1D.mat,models/materials/props/house_01/trims_1d.mat,mat,불가,308,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/unique_posters.mat,models/materials/props/house_01/unique_posters.mat,mat,불가,322,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/unique_stone.mat,models/materials/props/house_01/unique_stone.mat,mat,불가,316,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/unique_windows.mat,models/materials/props/house_01/unique_windows.mat,mat,불가,330,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/walls_inside.mat,models/materials/props/house_01/walls_inside.mat,mat,불가,316,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House01/wood_walls.mat,models/materials/props/house_01/wood_walls.mat,mat,불가,310,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/House02.mats,models/materials/props/house_02/house_02.mats,mats,불가,577,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/House02/marche_attic_floors.mat,models/materials/props/house_02/marche_attic_floors.mat,mat,불가,321,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/marche_attic_walls.mat,models/materials/props/house_02/marche_attic_walls.mat,mat,불가,320,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_door_glass.001.mat,models/materials/props/house_02/marche_door_glass.mat,mat,불가,323,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_First_Floor.mat,models/materials/props/house_02/marche_first_floor.mat,mat,불가,312,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_First_Floor_Unique.mat,models/materials/props/house_02/marche_first_floor_unique.mat,mat,불가,319,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_Opacity.001.mat,models/materials/props/house_02/marche_opacity.mat,mat,불가,314,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_Other_Floors.mat,models/materials/props/house_02/marche_other_floors.mat,mat,불가,315,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_Roof.mat,models/materials/props/house_02/marche_roof.mat,mat,불가,303,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_Tiling.001.mat,models/materials/props/house_02/marche_tiling.mat,mat,불가,317,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_Unique_Windows.002.mat,models/materials/props/house_02/marche_unique_windows.mat,mat,불가,341,Blender 자동 번호 .002 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House02/Marche_Windowframes.mat,models/materials/props/house_02/marche_windowframes.mat,mat,불가,317,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/brick_walls_sides.001.mat,models/materials/props/house_03/brick_walls_sides.mat,mat,불가,333,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/flower_walls.mat,models/materials/props/house_03/flower_walls.mat,mat,불가,304,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/flowers_door.001.mat,models/materials/props/house_03/flowers_door.mat,mat,불가,318,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/flowers_roof.mat,models/materials/props/house_03/flowers_roof.mat,mat,불가,304,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/flowers_trims.mat,models/materials/props/house_03/flowers_trims.mat,mat,불가,305,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/flowers_windows.001.mat,models/materials/props/house_03/flowers_windows.mat,mat,불가,327,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/House03.mats,models/materials/props/house_03/house_03.mats,mats,불가,772,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/House03/Marche_door_glass.002.mat,models/materials/props/house_03/marche_door_glass.mat,mat,불가,323,Blender 자동 번호 .002 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/Marche_First_Floor.001.mat,models/materials/props/house_03/marche_first_floor.mat,mat,불가,316,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/Marche_First_Floor_Unique.001.mat,models/materials/props/house_03/marche_first_floor_unique.mat,mat,불가,323,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/Marche_Opacity.002.mat,models/materials/props/house_03/marche_opacity.mat,mat,불가,314,Blender 자동 번호 .002 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/Marche_Unique_Windows.003.mat,models/materials/props/house_03/marche_unique_windows.mat,mat,불가,341,Blender 자동 번호 .003 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/roof_tall.001.mat,models/materials/props/house_03/roof_tall.mat,mat,불가,311,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/unique_posters.001.mat,models/materials/props/house_03/unique_posters.mat,mat,불가,326,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/unique_stone.001.mat,models/materials/props/house_03/unique_stone.mat,mat,불가,320,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/House03/unique_windows.001.mat,models/materials/props/house_03/unique_windows.mat,mat,불가,334,Blender 자동 번호 .001 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tree01/bark1.mat,models/materials/props/tree_01/bark_01.mat,mat,불가,449,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tree01/leaf1.mat,models/materials/props/tree_01/leaf_01.mat,mat,불가,443,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tree01/Tree01.mats,models/materials/props/tree_01/tree_01.mats,mats,불가,78,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tree02/bark1.mat,models/materials/props/tree_02/bark_01.mat,mat,불가,449,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tree02/leaf1.mat,models/materials/props/tree_02/leaf_01.mat,mat,불가,443,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tree02/Tree02.mats,models/materials/props/tree_02/tree_02.mats,mats,불가,78,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank01_Body/Material01.mat,models/materials/tanks/tank_01_body/material_01.mat,mat,불가,496,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank01_Body/Material02.mat,models/materials/tanks/tank_01_body/material_02.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank01_Body/Tank01_Body.mats,models/materials/tanks/tank_01_body/tank_01_body.mats,mats,불가,98,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank01_Gun/Material_0.003.mat,models/materials/tanks/tank_01_gun/material_00.mat,mat,불가,296,Blender 자동 번호 .003 제거; 파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank01_Gun/Material02.mat,models/materials/tanks/tank_01_gun/material_02.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank01_Gun/Tank01_Gun.mats,models/materials/tanks/tank_01_gun/tank_01_gun.mats,mats,불가,50,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank01_Turret/Material_0.mat,models/materials/tanks/tank_01_turret/material_00.mat,mat,불가,86,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank01_Turret/Material_0.001.mat,models/materials/tanks/tank_01_turret/material_00_001.mat,mat,불가,386,파일 내부에 원본 머티리얼 이름 포함; Blender 자동 번호를 지우면 같은 폴더의 다른 파일과 이름이 겹쳐 _001로 유지
+Models/Materials/Tank01_Turret/Material02.mat,models/materials/tanks/tank_01_turret/material_02.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank01_Turret/Tank01_Turret.mats,models/materials/tanks/tank_01_turret/tank_01_turret.mats,mats,불가,53,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank02_Body/Material01.mat,models/materials/tanks/tank_02_body/material_01.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank02_Body/Material02.mat,models/materials/tanks/tank_02_body/material_02.mat,mat,불가,496,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank02_Body/Tank02_Body.mats,models/materials/tanks/tank_02_body/tank_02_body.mats,mats,불가,98,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank02_Gun/Material01.mat,models/materials/tanks/tank_02_gun/material_01.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank02_Gun/Tank02_Gun.mats,models/materials/tanks/tank_02_gun/tank_02_gun.mats,mats,불가,50,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank02_Turret/Material01.mat,models/materials/tanks/tank_02_turret/material_01.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank02_Turret/Tank02_Turret.mats,models/materials/tanks/tank_02_turret/tank_02_turret.mats,mats,불가,53,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank03_Body/Material05.mat,models/materials/tanks/tank_03_body/material_05.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank03_Body/Material06.mat,models/materials/tanks/tank_03_body/material_06.mat,mat,불가,496,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank03_Body/Tank03_Body.mats,models/materials/tanks/tank_03_body/tank_03_body.mats,mats,불가,98,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank03_Gun/Material05.mat,models/materials/tanks/tank_03_gun/material_05.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank03_Gun/Tank03_Gun.mats,models/materials/tanks/tank_03_gun/tank_03_gun.mats,mats,불가,50,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank03_Turret/Material05.mat,models/materials/tanks/tank_03_turret/material_05.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank03_Turret/Tank03_Turret.mats,models/materials/tanks/tank_03_turret/tank_03_turret.mats,mats,불가,53,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank04_Body/Material01.mat,models/materials/tanks/tank_04_body/material_01.mat,mat,불가,496,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank04_Body/Material02.mat,models/materials/tanks/tank_04_body/material_02.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank04_Body/Tank04_Body.mats,models/materials/tanks/tank_04_body/tank_04_body.mats,mats,불가,98,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank04_Gun/Material02.mat,models/materials/tanks/tank_04_gun/material_02.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank04_Gun/Tank04_Gun.mats,models/materials/tanks/tank_04_gun/tank_04_gun.mats,mats,불가,50,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Materials/Tank04_Turret/Material02.mat,models/materials/tanks/tank_04_turret/material_02.mat,mat,불가,454,파일 내부에 원본 머티리얼 이름 포함
+Models/Materials/Tank04_Turret/Tank04_Turret.mats,models/materials/tanks/tank_04_turret/tank_04_turret.mats,mats,불가,53,파일 내부에 원본 경로(Models/Materials/...) 포함
+Models/Meshes/Bush01.mesh,models/meshes/props/bush_01.mesh,mesh,불가,112778,
+Models/Meshes/Fence01.mesh,models/meshes/props/fence_01.mesh,mesh,불가,68546,
+Models/Meshes/Fence02.mesh,models/meshes/props/fence_02.mesh,mesh,불가,47002,
+Models/Meshes/garage.mesh,models/meshes/props/garage.mesh,mesh,불가,1515082,
+Models/Meshes/Garage_Gate.mesh,models/meshes/props/garage_gate.mesh,mesh,불가,12594,
+Models/Meshes/House01.mesh,models/meshes/props/house_01.mesh,mesh,불가,624632,
+Models/Meshes/House02.mesh,models/meshes/props/house_02.mesh,mesh,불가,794004,
+Models/Meshes/House03.mesh,models/meshes/props/house_03.mesh,mesh,불가,362920,
+Models/Meshes/Tree01.mesh,models/meshes/props/tree_01.mesh,mesh,불가,228516,
+Models/Meshes/Tree02.mesh,models/meshes/props/tree_02.mesh,mesh,불가,561736,
+Models/Meshes/Tank01_Body.mesh,models/meshes/tanks/tank_01_body.mesh,mesh,불가,788113,
+Models/Meshes/Tank01_Caterpillar.mesh,models/meshes/tanks/tank_01_caterpillar.mesh,mesh,불가,325080,
+Models/Meshes/Tank01_Chassis.mesh,models/meshes/tanks/tank_01_chassis.mesh,mesh,불가,969148,
+Models/Meshes/Tank01_Gun.mesh,models/meshes/tanks/tank_01_gun.mesh,mesh,불가,33006,
+Models/Meshes/Tank01_Hull.mesh,models/meshes/tanks/tank_01_hull.mesh,mesh,불가,553354,
+Models/Meshes/Tank01_Turret.mesh,models/meshes/tanks/tank_01_turret.mesh,mesh,불가,102126,
+Models/Meshes/Tank02_Body.mesh,models/meshes/tanks/tank_02_body.mesh,mesh,불가,812920,
+Models/Meshes/Tank02_Gun.mesh,models/meshes/tanks/tank_02_gun.mesh,mesh,불가,51712,
+Models/Meshes/Tank02_Turret.mesh,models/meshes/tanks/tank_02_turret.mesh,mesh,불가,107128,
+Models/Meshes/Tank03_Body.mesh,models/meshes/tanks/tank_03_body.mesh,mesh,불가,702678,
+Models/Meshes/Tank03_Gun.mesh,models/meshes/tanks/tank_03_gun.mesh,mesh,불가,33960,
+Models/Meshes/Tank03_Turret.mesh,models/meshes/tanks/tank_03_turret.mesh,mesh,불가,169600,
+Models/Meshes/Tank04_Body.mesh,models/meshes/tanks/tank_04_body.mesh,mesh,불가,942313,
+Models/Meshes/Tank04_Gun.mesh,models/meshes/tanks/tank_04_gun.mesh,mesh,불가,46046,
+Models/Meshes/Tank04_Turret.mesh,models/meshes/tanks/tank_04_turret.mesh,mesh,불가,405274,
+Textures/Model/Fences/Fence01_DM.png,models/textures/props/fences/fence_01_diffuse.png,png,가능,26175200,
+Textures/Model/Fences/Fence01_NM.png,models/textures/props/fences/fence_01_normal.png,png,가능,9196174,
+Textures/Model/Fences/Fence02_DM.png,models/textures/props/fences/fence_02_diffuse.png,png,가능,17195390,
+Textures/Model/Fences/Fence02_NM.png,models/textures/props/fences/fence_02_normal.png,png,가능,5963833,
+Textures/Model/Garage/Gate_DM.png,models/textures/props/garage/gate_diffuse.png,png,가능,1567603,
+Textures/Model/Garage/Gate_NM.png,models/textures/props/garage/gate_normal.png,png,가능,2448376,
+Textures/Model/Garage/Metal_DM.png,models/textures/props/garage/metal_diffuse.png,png,가능,1362936,
+Textures/Model/Garage/Metal_NM.png,models/textures/props/garage/metal_normal.png,png,가능,3001815,
+Textures/Model/Garage/Roof_DM.png,models/textures/props/garage/roof_diffuse.png,png,가능,4929493,
+Textures/Model/Garage/Roof_NM.png,models/textures/props/garage/roof_normal.png,png,가능,4672992,
+Textures/Model/Garage/Wall_DM.png,models/textures/props/garage/wall_diffuse.png,png,가능,5027670,
+Textures/Model/Garage/Wall_NM.png,models/textures/props/garage/wall_normal.png,png,가능,6172670,
+Textures/Model/Buildings/Houses/Arches_DM.png,models/textures/props/houses/arches_diffuse.png,png,가능,341038,
+Textures/Model/Buildings/Houses/AtticFloor_DM.png,models/textures/props/houses/attic_floor_diffuse.png,png,가능,520601,내용 완전 중복: models/textures/props/houses/floors_planks_diffuse.png
+Textures/Model/Buildings/Houses/AtticWalls_DM.png,models/textures/props/houses/attic_walls_diffuse.png,png,가능,388550,
+Textures/Model/Buildings/Houses/BrickWallsSides_DM.png,models/textures/props/houses/brick_walls_sides_diffuse.png,png,가능,402311,
+Textures/Model/Buildings/Houses/Bricks_DM.png,models/textures/props/houses/bricks_diffuse.png,png,가능,1362629,
+Textures/Model/Buildings/Houses/FloorsPlanks_DM.png,models/textures/props/houses/floors_planks_diffuse.png,png,가능,520601,내용 완전 중복: models/textures/props/houses/attic_floor_diffuse.png
+Textures/Model/Buildings/Houses/Opacity_DM.png,models/textures/props/houses/opacity_diffuse.png,png,가능,237129,
+Textures/Model/Buildings/Houses/plaster_DM.png,models/textures/props/houses/plaster_diffuse.png,png,가능,191140,
+Textures/Model/Buildings/Houses/PlasterWallsShort_DM.png,models/textures/props/houses/plaster_walls_short_diffuse.png,png,가능,366264,
+Textures/Model/Buildings/Houses/plasterWallsTall_DM.png,models/textures/props/houses/plaster_walls_tall_diffuse.png,png,가능,379506,
+Textures/Model/Buildings/Houses/Roof1_DM.png,models/textures/props/houses/roof_01_diffuse.png,png,가능,240779,
+Textures/Model/Buildings/Houses/Roof2_DM.png,models/textures/props/houses/roof_02_diffuse.png,png,가능,363268,
+Textures/Model/Buildings/Houses/RoofShort_DM.png,models/textures/props/houses/roof_short_diffuse.png,png,가능,418167,
+Textures/Model/Buildings/Houses/RoofTall_DM.png,models/textures/props/houses/roof_tall_diffuse.png,png,가능,280229,
+Textures/Model/Buildings/Houses/Shutters_DM.png,models/textures/props/houses/shutters_diffuse.png,png,가능,408104,
+Textures/Model/Buildings/Houses/Trims_DM.png,models/textures/props/houses/trims_01_diffuse.png,png,가능,486149,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Model/Buildings/Houses/Trims_DM (2).png,models/textures/props/houses/trims_02_diffuse.png,png,가능,475122,
+Textures/Model/Buildings/Houses/Trims_DM (3).png,models/textures/props/houses/trims_03_diffuse.png,png,가능,601191,
+Textures/Model/Buildings/Houses/UniqueDoor_DM.png,models/textures/props/houses/unique_door_diffuse.png,png,가능,508184,
+Textures/Model/Buildings/Houses/UniquePosters_DM.png,models/textures/props/houses/unique_posters_diffuse.png,png,가능,521622,
+Textures/Model/Buildings/Houses/UniqueSign_DM.png,models/textures/props/houses/unique_sign_diffuse.png,png,가능,550023,
+Textures/Model/Buildings/Houses/UniqueStone_DM.png,models/textures/props/houses/unique_stone_diffuse.png,png,가능,430968,
+Textures/Model/Buildings/Houses/UniqueWindows_DM.png,models/textures/props/houses/unique_windows_01_diffuse.png,png,가능,532643,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Model/Buildings/Houses/UniqueWindows_DM (2).png,models/textures/props/houses/unique_windows_02_diffuse.png,png,가능,405766,
+Textures/Model/Buildings/Houses/UniqueWindows_DM (3).png,models/textures/props/houses/unique_windows_03_diffuse.png,png,가능,387821,
+Textures/Model/Buildings/Houses/Walls_DM.png,models/textures/props/houses/walls_diffuse.png,png,가능,392039,
+Textures/Model/Buildings/Houses/WallsInside_DM.png,models/textures/props/houses/walls_inside_diffuse.png,png,가능,162910,
+Textures/Model/Buildings/Houses/WoodWalls_DM.png,models/textures/props/houses/wood_walls_diffuse.png,png,가능,379046,
+Textures/Model/Trees/Bush_DM.png,models/textures/props/trees/bush_diffuse.png,png,가능,3699026,
+Textures/Model/Trees/Bush_NM.png,models/textures/props/trees/bush_normal.png,png,가능,4333153,
+Textures/Model/Trees/Tree01_Leaf_DM.png,models/textures/props/trees/tree_01_leaf_diffuse.png,png,가능,596642,
+Textures/Model/Trees/Tree01_Leaf_NM.png,models/textures/props/trees/tree_01_leaf_normal.png,png,가능,1424179,
+Textures/Model/Trees/Tree01_Leaf_SM.png,models/textures/props/trees/tree_01_leaf_specular.png,png,가능,587842,
+Textures/Model/Trees/Tree01_Trunk_DM.png,models/textures/props/trees/tree_01_trunk_diffuse.png,png,가능,2190654,
+Textures/Model/Trees/Tree01_Trunk_NM.png,models/textures/props/trees/tree_01_trunk_normal.png,png,가능,2489661,
+Textures/Model/Trees/Tree01_Trunk_SM.png,models/textures/props/trees/tree_01_trunk_specular.png,png,가능,993652,
+Textures/Model/Tank01/Tank01_Body_DM.png,models/textures/tanks/tank_01/tank_01_body_diffuse.png,png,가능,4983700,
+Textures/Model/Tank01/Tank01_Body_NM.png,models/textures/tanks/tank_01/tank_01_body_normal.png,png,가능,4502630,
+Textures/Model/Tank01/Tank01_Body_SM.png,models/textures/tanks/tank_01/tank_01_body_specular.png,png,가능,841862,
+Textures/Model/Tank01/Tank01_Caterpillar_DM.png,models/textures/tanks/tank_01/tank_01_caterpillar_diffuse.png,png,가능,83673,내용 완전 중복: models/textures/tanks/tank_03/tank_03_caterpillar_diffuse.png
+Textures/Model/Tank01/Tank01_Caterpillar_NM.png,models/textures/tanks/tank_01/tank_01_caterpillar_normal.png,png,가능,38394,내용 완전 중복: models/textures/tanks/tank_03/tank_03_caterpillar_normal.png
+Textures/Model/Tank01/Tank01_Caterpillar_SM.png,models/textures/tanks/tank_01/tank_01_caterpillar_specular.png,png,가능,62269,내용 완전 중복: models/textures/tanks/tank_03/tank_03_caterpillar_specular.png
+Textures/Model/Tank02/Tank02_Body_DM.png,models/textures/tanks/tank_02/tank_02_body_diffuse.png,png,가능,5337975,
+Textures/Model/Tank02/Tank02_Body_NM.png,models/textures/tanks/tank_02/tank_02_body_normal.png,png,가능,6034205,
+Textures/Model/Tank02/Tank02_Body_SM.png,models/textures/tanks/tank_02/tank_02_body_specular.png,png,가능,1105596,
+Textures/Model/Tank02/Tank02_Caterpillar_DM.png,models/textures/tanks/tank_02/tank_02_caterpillar_diffuse.png,png,가능,318886,
+Textures/Model/Tank02/Tank02_Caterpillar_NM.png,models/textures/tanks/tank_02/tank_02_caterpillar_normal.png,png,가능,89140,
+Textures/Model/Tank02/Tank02_Caterpillar_SM.png,models/textures/tanks/tank_02/tank_02_caterpillar_specular.png,png,가능,367310,
+Textures/Model/Tank03/Tank03_Body_DM.png,models/textures/tanks/tank_03/tank_03_body_diffuse.png,png,가능,5950551,
+Textures/Model/Tank03/Tank03_Body_NM.png,models/textures/tanks/tank_03/tank_03_body_normal.png,png,가능,6253428,
+Textures/Model/Tank03/Tank03_Body_SM.png,models/textures/tanks/tank_03/tank_03_body_specular.png,png,가능,927579,
+Textures/Model/Tank03/Tank03_Caterpillar_DM.png,models/textures/tanks/tank_03/tank_03_caterpillar_diffuse.png,png,가능,83673,내용 완전 중복: models/textures/tanks/tank_01/tank_01_caterpillar_diffuse.png
+Textures/Model/Tank03/Tank03_Caterpillar_NM.png,models/textures/tanks/tank_03/tank_03_caterpillar_normal.png,png,가능,38394,내용 완전 중복: models/textures/tanks/tank_01/tank_01_caterpillar_normal.png
+Textures/Model/Tank03/Tank03_Caterpillar_SM.png,models/textures/tanks/tank_03/tank_03_caterpillar_specular.png,png,가능,62269,내용 완전 중복: models/textures/tanks/tank_01/tank_01_caterpillar_specular.png
+Textures/Model/Tank04/Tank04_Body_DM.png,models/textures/tanks/tank_04/tank_04_body_diffuse.png,png,가능,5265670,
+Textures/Model/Tank04/Tank04_Body_NM.png,models/textures/tanks/tank_04/tank_04_body_normal.png,png,가능,4596907,
+Textures/Model/Tank04/Tank04_Body_SM.png,models/textures/tanks/tank_04/tank_04_body_specular.png,png,가능,815388,
+Textures/Model/Tank04/Tank04_Caterpillar_DM.png,models/textures/tanks/tank_04/tank_04_caterpillar_diffuse.png,png,가능,78314,
+Textures/Model/Tank04/Tank04_Caterpillar_NM.png,models/textures/tanks/tank_04/tank_04_caterpillar_normal.png,png,가능,24865,
+Textures/Model/Tank04/Tank04_Caterpillar_SM.png,models/textures/tanks/tank_04/tank_04_caterpillar_specular.png,png,가능,36568,
+Models/LandscapeMaps/Terrain01.map,terrain/maps/battle_01/battle_01.map,map,불가,566,"파일 내부에 원본 경로(Models\LandscapeMaps\..., Textures\Landscape\...) 포함"
+Models/LandscapeMaps/Terrain01_AlphaMap.png,terrain/maps/battle_01/battle_01_alpha_map.png,png,가능,145703,
+Models/LandscapeMaps/Terrain01_HeightMap.png,terrain/maps/battle_01/battle_01_height_map.png,png,가능,41007,
+Models/LandscapeMaps/SelectScene.map,terrain/maps/select/select.map,map,불가,564,"파일 내부에 원본 경로(Models\LandscapeMaps\..., Textures\Landscape\...) 포함"
+Models/LandscapeMaps/SelectScene_AlphaMap.png,terrain/maps/select/select_alpha_map.png,png,가능,7012,
+Models/LandscapeMaps/SelectScene_HeightMap.png,terrain/maps/select/select_height_map.png,png,가능,1633,
+Textures/Landscape/Grass_DM.png,terrain/textures/grass_01_diffuse.png,png,가능,1324671,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Landscape/Grass_NM.png,terrain/textures/grass_01_normal.png,png,가능,651378,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Landscape/Grass_SM.png,terrain/textures/grass_01_specular.png,png,가능,212551,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Landscape/Grass02_DM.png,terrain/textures/grass_02_diffuse.png,png,가능,1361415,
+Textures/Landscape/Grass02_NM.png,terrain/textures/grass_02_normal.png,png,가능,604916,
+Textures/Landscape/Grass02_SM.png,terrain/textures/grass_02_specular.png,png,가능,285460,
+Textures/Landscape/Moss_DM.png,terrain/textures/moss_diffuse.png,png,가능,456288,
+Textures/Landscape/Moss_NM.png,terrain/textures/moss_normal.png,png,가능,1403883,
+Textures/Landscape/Moss_SM.png,terrain/textures/moss_specular.png,png,가능,174583,
+Textures/Landscape/Rock_DM.png,terrain/textures/rock_01_diffuse.png,png,가능,1315220,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Landscape/Rock_NM.png,terrain/textures/rock_01_normal.png,png,가능,1349856,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Landscape/Rock_SM.png,terrain/textures/rock_01_specular.png,png,가능,136379,같은 이름의 번호 붙은 파일이 있어 _01 부여
+Textures/Landscape/Rock02_DM.png,terrain/textures/rock_02_diffuse.png,png,가능,452694,
+Textures/Landscape/Rock02_NM.png,terrain/textures/rock_02_normal.png,png,가능,1394332,
+Textures/Landscape/Rock02_SM.png,terrain/textures/rock_02_specular.png,png,가능,296436,
+Textures/Landscape/RockBed_DM.png,terrain/textures/rock_bed_diffuse.png,png,가능,1417437,
+Textures/Landscape/RockBed_NM.png,terrain/textures/rock_bed_normal.png,png,가능,717485,
+Textures/Landscape/RockBed_SM.png,terrain/textures/rock_bed_specular.png,png,가능,255564,
+Textures/Landscape/Soil_DM.png,terrain/textures/soil_diffuse.png,png,가능,1356453,
+Textures/Landscape/Soil_NM.png,terrain/textures/soil_normal.png,png,가능,1404141,
+Textures/Landscape/Soil_SM.png,terrain/textures/soil_specular.png,png,가능,156335,
+Textures/UI/bg/defeat_bg.png,ui/backgrounds/defeat.png,png,가능,5817058,
+Textures/UI/bg/loading_bg_1.png,ui/backgrounds/loading_01.png,png,가능,3252672,
+Textures/UI/bg/loading_bg_2.png,ui/backgrounds/loading_02.png,png,가능,6687480,
+Textures/UI/bg/loading_bg_3.png,ui/backgrounds/loading_03.png,png,가능,3853700,
+Textures/UI/bg/loading_bg_4.png,ui/backgrounds/loading_04.png,png,가능,7976144,
+Textures/UI/bg/title_bg.png,ui/backgrounds/title.png,png,가능,709827,
+Textures/UI/bg/win_bg.png,ui/backgrounds/win.png,png,가능,679900,
+Textures/UI/button.png,ui/buttons/button.png,png,가능,7245,
+Textures/UI/button_hover.png,ui/buttons/button_hover.png,png,가능,13071,
+Textures/UI/button_select.png,ui/buttons/button_select.png,png,가능,13307,
+Textures/UI/cancel.png,ui/buttons/cancel.png,png,가능,3054,
+Textures/UI/gear.png,ui/common/gear.png,png,가능,11399,
+Textures/UI/logo.png,ui/common/logo.png,png,가능,94897,
+Textures/UI/popup.png,ui/common/popup.png,png,가능,221074,
+Textures/UI/AimBlur.png,ui/hud/aim_blur.png,png,가능,160679,
+Textures/UI/crossHair.png,ui/hud/crosshair.png,png,가능,5511,
+Textures/UI/Hit.png,ui/hud/hit.png,png,가능,41713,
+Textures/UI/Hologram.png,ui/hud/hologram_01.png,png,가능,11201,
+Textures/UI/Hologram2.png,ui/hud/hologram_02.png,png,가능,11192,
+Textures/UI/hp_bar_base.png,ui/hud/hp_bar_base.png,png,가능,2992,
+Textures/UI/hp_bar_BG.png,ui/hud/hp_bar_bg.png,png,가능,158,
+Textures/UI/state.png,ui/hud/state.png,png,가능,37746,
+Textures/UI/tankBody.png,ui/hud/tank_body.png,png,가능,9216,
+Textures/UI/tankTurret.png,ui/hud/tank_turret.png,png,가능,13795,
+Textures/UI/ObjectThumbnail/Bush01.png,ui/icons/objects/bush_01.png,png,가능,9496,
+Textures/UI/ObjectThumbnail/Fence01.png,ui/icons/objects/fence_01.png,png,가능,15616,
+Textures/UI/ObjectThumbnail/Fence02.png,ui/icons/objects/fence_02.png,png,가능,12820,
+Textures/UI/ObjectThumbnail/House01.png,ui/icons/objects/house_01.png,png,가능,14963,
+Textures/UI/ObjectThumbnail/House02.png,ui/icons/objects/house_02.png,png,가능,13906,
+Textures/UI/ObjectThumbnail/House03.png,ui/icons/objects/house_03.png,png,가능,11970,
+Textures/UI/ObjectThumbnail/Tree01.png,ui/icons/objects/tree_01.png,png,가능,12374,
+Textures/UI/ObjectThumbnail/Tree02.png,ui/icons/objects/tree_02.png,png,가능,17986,
+Textures/UI/Tank01_Icon.png,ui/icons/tanks/tank_01.png,png,가능,77868,
+Textures/UI/Tank02_Icon.png,ui/icons/tanks/tank_02.png,png,가능,96698,
+Textures/UI/Tank03_Icon.png,ui/icons/tanks/tank_03.png,png,가능,135730,
+Textures/UI/Tank04_Icon.png,ui/icons/tanks/tank_04.png,png,가능,92902,
+Textures/UI/Dead.png,ui/result/dead.png,png,가능,129521,
+Textures/UI/Win.png,ui/result/win.png,png,가능,133606,
+Textures/UI/Tutorial/tutorial_1.png,ui/tutorial/tutorial_01.png,png,가능,1310401,
+Textures/UI/Tutorial/tutorial_2.png,ui/tutorial/tutorial_02.png,png,가능,1388350,
+Textures/UI/Tutorial/tutorial_3.png,ui/tutorial/tutorial_03.png,png,가능,1560854,
+Textures/UI/Tutorial/tutorial_4.png,ui/tutorial/tutorial_04.png,png,가능,1224294,
+Textures/UI/Tutorial/tutorial_5.png,ui/tutorial/tutorial_05.png,png,가능,1290823,
+Textures/UI/Tutorial/tutorial_6.png,ui/tutorial/tutorial_06.png,png,가능,1772474,
+Sound/Easteregg/desktop.ini,,ini,불가,192,제거: Windows 탐색기 폴더 설정 파일 — 리소스 아님
+Textures/Test.jfif,,jfif,불가,36572,제거: 테스트용 이미지 — 원본 코드에서 이름으로 참조되지 않음
